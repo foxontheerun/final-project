@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MainComponent } from './main/main.component';
-import { KanbanModule } from '@syncfusion/ej2-angular-kanban';
+
 
 @NgModule({
   declarations: [
@@ -17,8 +17,7 @@ import { KanbanModule } from '@syncfusion/ej2-angular-kanban';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    KanbanModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
