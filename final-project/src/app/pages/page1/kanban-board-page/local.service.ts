@@ -20,7 +20,77 @@ export class LocalService {
      {
       "id": 2,
       "groupId": 1,
-      "name":"Ошибка датчика КП-312",
+      "name":"sdfsdfsdfsd",
+      "email": "@sdsdf",
+      "money": 2500,
+      "date": "21/01/2022",
+      "dateChange": "2/02/2023",
+      "executor": "Иван Васильев"
+    },
+    {
+      "id": 3,
+      "groupId": 5,
+      "name":"dsfsdf",
+      "email": "@sdsdf",
+      "money": 2500,
+      "date": "21/01/2022",
+      "dateChange": "2/02/2023",
+      "executor": "Иван Васильев"
+    },
+    {
+      "id": 4,
+      "groupId": 4,
+      "name":"gftrtrrrrrrrrrrrrrrrr",
+      "email": "@sdsdf",
+      "money": 2500,
+      "date": "21/01/2022",
+      "dateChange": "2/02/2023",
+      "executor": "Иван Васильев"
+    },
+    {
+      "id": 5,
+      "groupId": 5,
+      "name":"ewrwe",
+      "email": "@sdsdf",
+      "money": 2500,
+      "date": "21/01/2022",
+      "dateChange": "2/02/2023",
+      "executor": "Иван Васильев"
+    },
+    {
+      "id": 5,
+      "groupId": 2,
+      "name":"ewdewdwefgefvdvdv",
+      "email": "@sdsdf",
+      "money": 2500,
+      "date": "21/01/2022",
+      "dateChange": "2/02/2023",
+      "executor": "Иван Васильев"
+    },
+    {
+      "id": 5,
+      "groupId": 3,
+      "name":"ewrwe",
+      "email": "@sdsdf",
+      "money": 2500,
+      "date": "21/01/2022",
+      "dateChange": "2/02/2023",
+      "executor": "Иван Васильев"
+    },
+    {
+      "id": 5,
+      "groupId": 4,
+      "name":"ewrwe",
+      "email": "@sdsdf",
+      "money": 2500,
+      "date": "21/01/2022",
+      "dateChange": "2/02/2023",
+      "executor": "Иван Васильев"
+    },
+    {
+      "id": 5,
+      "groupId": 5,
+      "name":"ewrwe",
       "email": "@sdsdf",
       "money": 2500,
       "date": "21/01/2022",
@@ -30,22 +100,8 @@ export class LocalService {
   ];
 
   constructor() { 
-    localStorage.setItem('cardsData', JSON.stringify(this.cardsData))
+    // localStorage.setItem('cardsData', JSON.stringify(this.cardsData))
   }
 
-  public saveData(key: string, value: string) {
-    localStorage.setItem(key, value);
-  }
-
-  public getData(key: string) {
-    return localStorage.getItem(key)
-  }
-
-  public removeData(key: string) {
-    localStorage.removeItem(key);
-  }
-
-  public clearData() {
-    localStorage.clear();
-  }
+ 
 }

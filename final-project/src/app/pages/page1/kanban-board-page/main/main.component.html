@@ -20,11 +20,16 @@
             ВХОДЯЩИЕ
           </div>
           <div class="amount"> 0 ₽ </div>
-          <div class="tasks-container">
-              <div class="task" *ngFor="let item of  (incomingRequests | async)" >
-                {{item}}
+
+<app-card></app-card>
+          <!-- <div class="tasks-container">
+              <div *ngFor="let item of  (incomingRequests | async)" >
+                <div class="line"></div>
+                <div class="task">{{item.name}}</div>
               </div>
-          </div>
+          </div> -->
+
+
         </div>
 
 
@@ -34,20 +39,24 @@
             В РАБОТЕ
           </div>
           <div class="amount"> 597 000 ₽ </div>
+
           <div class="tasks-container">
-              <div class="task"*ngFor="let item of  (incomingRequests | async)" >
-                {{item}}
+              <div *ngFor="let item of  (inWorkRequests | async)" >
+                <div class="line"></div>
+                <div class="task">{{item.name}}</div>
               </div>
             </div>
         </div>
+
         <div class="board-column">
           <div class="column-title">
             НА СОГЛАСОВАНИИ
           </div>
           <div class="amount"> 597 000 ₽ </div>
           <div class="tasks-container">
-              <div class="task"*ngFor="let item of  (incomingRequests | async)" >
-                {{item}}
+              <div *ngFor="let item of  (toAgreedRequests | async)" >
+                <div class="line"></div>
+                <div class="task">{{item.name}}</div>
               </div>
           </div>
         </div>
@@ -57,8 +66,9 @@
           </div>
           <div class="amount"> 597 000 ₽ </div>
           <div class="tasks-container">
-            <div class="task" *ngFor="let item of  (incomingRequests | async)" >
-              {{item.name}}
+            <div *ngFor="let item of  (doneRequests | async)" >
+              <div class="line"></div>
+              <div class="task">{{item.name}}</div>
             </div>
         </div>
         </div>
@@ -68,8 +78,9 @@
           </div>
           <div class="amount"> 597 000 ₽ </div>
           <div class="tasks-container">
-            <div class="task" *ngFor="let item of  (incomingRequests | async)" >
-              {{item}}
+            <div *ngFor="let item of  (forShipmentRequests | async)" >
+              <div class="line"></div>
+              <div class="task">{{item.name}}</div>
             </div>
         </div>
         </div>

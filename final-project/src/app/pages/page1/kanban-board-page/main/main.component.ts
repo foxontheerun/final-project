@@ -8,11 +8,11 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  public incomingRequests = this.kanbanBoardService.cards$;
-  // public inWorkRequests = ['Подключение системы ', 'Поверка датчиков на УПН-231'];
-  // public toAgreedRequests = ['Обновление ПО'];
-  // public doneRequests = ['Корректировка значений по ВКУ-321'];
-  // public forShipmentRequests = [];
+  public incomingRequests = this.kanbanBoardService.getGroupData(1);
+  public inWorkRequests = this.kanbanBoardService.getGroupData(2);
+  public toAgreedRequests = this.kanbanBoardService.getGroupData(3);
+  public doneRequests = this.kanbanBoardService.getGroupData(4);
+  public forShipmentRequests = this.kanbanBoardService.getGroupData(5);
 
   constructor(public kanbanBoardService: KanbanBoardService) { }
 
