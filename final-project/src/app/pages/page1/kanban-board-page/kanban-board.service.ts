@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { LocalService } from './local.service';
 import { Card } from './main/card/card-interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class KanbanBoardService {
-  private cards:Card[] = [];
+  public cards$ = new BehaviorSubject<Card[]>(this.localService.cardsData);
   
-  reader = new FileReader();
-  constructor() { }
+  constructor(private localService: LocalService) { }
+
+  
 
 }

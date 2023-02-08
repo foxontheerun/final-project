@@ -13,25 +13,29 @@
     </div>
     <div class="board-wrapper">
       <div class="board-columns">
+
+
         <div class="board-column">
           <div class="column-title">
             ВХОДЯЩИЕ
           </div>
           <div class="amount"> 0 ₽ </div>
-          <div class="tasks-container"
-                >
-              <div class="task"*ngFor="let item of incomingRequests" >
+          <div class="tasks-container">
+              <div class="task" *ngFor="let item of  (incomingRequests | async)" >
                 {{item}}
               </div>
           </div>
         </div>
+
+
+
         <div class="board-column">
           <div class="column-title">
             В РАБОТЕ
           </div>
           <div class="amount"> 597 000 ₽ </div>
           <div class="tasks-container">
-              <div class="task" *ngFor="let item of inWorkRequests" >
+              <div class="task"*ngFor="let item of  (incomingRequests | async)" >
                 {{item}}
               </div>
             </div>
@@ -42,7 +46,7 @@
           </div>
           <div class="amount"> 597 000 ₽ </div>
           <div class="tasks-container">
-              <div class="task" *ngFor="let item of toAgreedRequests" >
+              <div class="task"*ngFor="let item of  (incomingRequests | async)" >
                 {{item}}
               </div>
           </div>
@@ -53,8 +57,8 @@
           </div>
           <div class="amount"> 597 000 ₽ </div>
           <div class="tasks-container">
-            <div class="task" *ngFor="let item of  doneRequests" >
-              {{item}}
+            <div class="task" *ngFor="let item of  (incomingRequests | async)" >
+              {{item.name}}
             </div>
         </div>
         </div>
@@ -64,7 +68,7 @@
           </div>
           <div class="amount"> 597 000 ₽ </div>
           <div class="tasks-container">
-            <div class="task" *ngFor="let item of   forShipmentRequests" >
+            <div class="task" *ngFor="let item of  (incomingRequests | async)" >
               {{item}}
             </div>
         </div>
