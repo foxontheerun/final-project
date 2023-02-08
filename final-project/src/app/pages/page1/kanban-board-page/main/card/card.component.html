@@ -1,26 +1,19 @@
-
-
-
-<div class="tasks-container">
-    <div  >
-      <div class="line"></div>
-      <div class="task">
-        <div class="flex-container">
-          <div class="head">
-            <div class="task-name">Ошибка датчика КП-312</div>
-            <div class="regular-text">2 500 ₽</div>
-            <div class="ligth-text">21 января 2022</div>
-          </div>
-          <div>
-            0
-          </div>
-        </div>
-        <div class="info">
-          <div class="ligth-text">Дата изменения</div>
-          <div class="regular-text">2 февраля 2022</div>
-          <div class="ligth-text">Исполнитель</div>
-          <div>Вася</div>
-        </div>
-      </div>
+<div class="line"></div>
+<div class="task">
+  <div class="flex-container">
+    <div class="head">
+      <div class="task-name">{{taskName.name}}</div>
+      <div class="regular-text">{{taskName.money}} ₽</div>
+      <div class="ligth-text">{{taskName.date}}</div>
     </div>
+    <div>
+      0
+    </div>
+  </div>
+  <div class="info">
+    <div class="ligth-text" *ngIf="taskName.dateChange">Дата изменения</div>
+    <div class="regular-text">{{taskName.dateChange}}</div>
+    <div class="ligth-text">Исполнитель</div>
+    <div>{{taskName.executor}}</div>
+  </div>
 </div>
