@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './pages/page1/kanban-board-page/header/header.component';
 import { SidebarComponent } from './pages/page1/kanban-board-page/sidebar/sidebar.component';
 import { MainComponent } from './pages/page1/kanban-board-page/main/main.component';
-import {DragDropModule} from '@angular/cdk/drag-drop';
 import { KanbanBoardPageComponent } from './pages/page1/kanban-board-page/kanban-board-page.component';
 import { CardComponent } from './pages/page1/kanban-board-page/main/card/card.component';
 
@@ -21,8 +20,7 @@ import { CardComponent } from './pages/page1/kanban-board-page/main/card/card.co
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    DragDropModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,6 @@
 import { KanbanBoardService } from './../kanban-board.service';
 import { Component, OnInit } from '@angular/core';
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+
 import { map, Observable } from 'rxjs';
 import { Card } from './card/card-interface';
 
