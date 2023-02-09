@@ -20,10 +20,11 @@
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
     "@syncfusion/ej2-angular-kanban": "^20.4.48",
+    "@syncfusion/ej2-material-theme": "~20.4.48",
+    
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.11.4",
-    "@syncfusion/ej2-material-theme": "~20.4.48"
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.2.1",

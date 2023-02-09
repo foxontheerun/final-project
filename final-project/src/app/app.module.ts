@@ -9,6 +9,8 @@ import { MainComponent } from './pages/page1/kanban-board-page/main/main.compone
 import { KanbanBoardPageComponent } from './pages/page1/kanban-board-page/kanban-board-page.component';
 import { CardComponent } from './pages/page1/kanban-board-page/main/card/card.component';
 
+import {DragDropModule} from '@angular/cdk/drag-drop';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +22,8 @@ import { CardComponent } from './pages/page1/kanban-board-page/main/card/card.co
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]
