@@ -13,7 +13,7 @@
     <div class="board-wrapper">
       <div class="board-columns">
 
-        <div class="board-column" >
+        <div class="board-column" cdkDrag >
           <div class="column-title">
             <div>{{columns[0]}}</div>
             <div class="number">{{(requestIncoming$ | async)?.length}}</div>
