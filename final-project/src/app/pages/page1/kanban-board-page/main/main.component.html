@@ -13,6 +13,30 @@
     <div class="board-wrapper">
       <div class="board-columns">
 
+        <div class="board-column" >
+          <div class="column-title">
+            <div>{{columns[0]}}</div>
+            <div class="number">{{(requestIncoming$ | async)?.length}}</div>
+          </div>
+          <div class="amount"> 0 ₽ </div>
+          
+          <app-card *ngFor="let item of  (requestIncoming$ | async)"
+              [taskName] = item></app-card>
+        </div>
+
+        <div class="board-column">
+          <div class="column-title">
+            <div>{{columns[1]}}</div>
+            <div class="number">{{(requestInProgress$ | async)?.length}}</div>
+          </div>
+          <div class="amount"> 0 ₽ </div>
+          
+          <app-card *ngFor="let item of  (requestInProgress$ | async)"
+              [taskName] = item></app-card>
+        </div>
+
+
+<!-- 
         <div class="board-column" *ngFor="let column of  columns; let i = index">
           <div class="column-title">
             <div>{{column}}</div>
@@ -20,9 +44,32 @@
           </div>
           <div class="amount"> 0 ₽ </div>
           
-        <app-card *ngFor="let item of  (getTasksByGroup(i+1) | async)"
+          <app-card *ngFor="let item of  (getTasksByGroup(i+1) | async)"
               [taskName] = item></app-card>
         </div>
+
+        <div class="board-column" *ngFor="let column of  columns; let i = index">
+          <div class="column-title">
+            <div>{{column}}</div>
+            <div class="number">4</div>
+          </div>
+          <div class="amount"> 0 ₽ </div>
+          
+          <app-card *ngFor="let item of  (getTasksByGroup(i+1) | async)"
+              [taskName] = item></app-card>
+        </div>
+
+        <div class="board-column" *ngFor="let column of  columns; let i = index">
+          <div class="column-title">
+            <div>{{column}}</div>
+            <div class="number">4</div>
+          </div>
+          <div class="amount"> 0 ₽ </div>
+          
+          <app-card *ngFor="let item of  (getTasksByGroup(i+1) | async)"
+              [taskName] = item></app-card>
+        </div> -->
+
 
       </div>
     </div>

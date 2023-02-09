@@ -8,3 +8,8 @@ export interface Card {
     dateChange: string;
     executor: string;
 }
+
+export interface Group {
+    groupId: number;
+    groupName: string;
+}

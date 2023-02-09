@@ -78,7 +78,30 @@ export class LocalService {
       "executor": "Иван Васильев"
     },
   ];
+  public groupsData = [
+    {
+      groupId: 1,
+      groupName: 'ВХОДЯЩИЕ'
+    },
+    {
+      groupId: 2,
+      groupName: 'В РАБОТЕ'
+    },
+    {
+      groupId: 3,
+      groupName: 'НА СОГЛАСОВАНИИ'
+    },
+    {
+      groupId: 4,
+      groupName: 'НА СОГЛАСОВАНИИ'
+    },
+    {
+      groupId: 5,
+      groupName: 'К ОТГРУЗКЕ'
+    },
+  ]
 
+  
   constructor() { 
     // localStorage.setItem('cardsData', JSON.stringify(this.cardsData))
   }
