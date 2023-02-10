@@ -1,0 +1,46 @@
+.example-card {
+  border-top: solid 4px;
+  margin: 5px;
+  width: 230px;
+
+  .title {
+    display: flex;
+    align-items: start;
+  }
+
+  .task-content {
+    margin-top: 10px;
+
+    p {
+      font-size: 16px;
+    }
+
+    .user {
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      img {
+        height: 40px;
+        width: 40px;
+        border-radius: 100%;
+        margin-right: 8px;
+      }
+    }
+  }
+}
+
+.low {
+  border-color: #44ccdb;
+}
+
+.middle {
+  border-color: #ffa429;
+}
+
+.high {
+  border-color: #bb8ab3;
+}
+
+.critical {
+  border-color: #ff4443;
+}

@@ -8,8 +8,12 @@ import { SidebarComponent } from './pages/page1/kanban-board-page/sidebar/sideba
 import { MainComponent } from './pages/page1/kanban-board-page/main/main.component';
 import { KanbanBoardPageComponent } from './pages/page1/kanban-board-page/kanban-board-page.component';
 import { CardComponent } from './pages/page1/kanban-board-page/main/card/card.component';
-import {MatButtonModule} from '@angular/material/button';
+
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {MatCardModule} from "@angular/material/card";
+import {MatBadgeModule} from "@angular/material/badge";
+import {MatButtonModule} from '@angular/material/button';
 
 
 @NgModule({
@@ -25,6 +29,9 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     BrowserModule,
     AppRoutingModule,
     DragDropModule,
+    NoopAnimationsModule,
+    MatBadgeModule,
+    MatCardModule,
     MatButtonModule
   ],
   providers: [],

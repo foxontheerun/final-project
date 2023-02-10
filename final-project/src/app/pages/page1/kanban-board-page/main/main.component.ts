@@ -1,34 +1,53 @@
-import { KanbanBoardService } from './../kanban-board.service';
+
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem, } from '@angular/cdk/drag-drop';
 import { findIndex, map, Observable, switchMap } from 'rxjs';
-import { Card } from './card/card-interface';
+import { TasksDataService } from 'src/app/services/tasks-data.service';
+import { taskStatuses } from 'src/app/common/constants';
+import { User, Task } from 'src/app/common/interfaces';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit {
-  // private groups = 
-  public columns = ['ВХОДЯЩИЕ', 'В РАБОТЕ', 'НА СОГЛАСОВАНИИ', 'ГОТОВО', 'К ОТГРУЗКЕ'];
+export class MainComponent {
 
-  public requestIncoming$:Observable<Card[]> = this.kanbanBoardService.getGroupData(1);
-  public requestInProgress$:Observable<Card[]> = this.kanbanBoardService.getGroupData(2);
-  public requestsForApproval$:Observable<Card[]> = this.kanbanBoardService.getGroupData(3);
-  public requestsDone$:Observable<Card[]> = this.kanbanBoardService.getGroupData(4);
-  public requestsShipment$:Observable<Card[]> = this.kanbanBoardService.getGroupData(5);
 
-  constructor(public kanbanBoardService: KanbanBoardService) { }
+  public readonly tasksGroupedByStatus$ = this.data.tasks.pipe(
+    map(tasks => {
+      const result = new Map<number, Task[]>();
+      tasks.forEach(task => {
+        if (result.has(task.statusId)) {
+          result.get(task.statusId)?.push(task);
+        }
+        else {
+          result.set(task.statusId, [task]);
+        }
+      });
+      return result;
+    })
+  );
+  public readonly statuses = taskStatuses;
 
-  ngOnInit(): void {
+  constructor(private readonly data: TasksDataService) {
   }
 
-  drop(event: CdkDragDrop<string[]>) {
-    // moveItemInArray(this.requestIncoming$ as any, event.previousIndex, event.currentIndex);
-  this.requestIncoming$.pipe(
-      // map((data, index) => )
-  );
+  public getSortedTasksFromMap(map: Map<number, Task[]> | null, key: number): Task[] {
+    return (
+      map?.get(key) ?? []
+    ).sort((a, b) => a.statusPosition - b.statusPosition);
+  }
+
+  public getConnectedStatuses(statusId: number): string[] {
+    return this.statuses.filter(status => status.id !== statusId).map(status => `status-${status.id}`);
+  }
+
+  public drop(event: CdkDragDrop<Task[]>): void {
+    const taskId = event.previousContainer.data[event.previousIndex].id;
+    const newStatusId = Number(event.container.id.slice(7));
+    const newStatusPosition = event.currentIndex;
+    this.data.changeTaskByDrop(taskId, newStatusId, newStatusPosition);
   }
 
 }

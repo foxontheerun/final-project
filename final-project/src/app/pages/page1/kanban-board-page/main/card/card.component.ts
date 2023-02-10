@@ -1,16 +1,19 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges,  OnChanges } from '@angular/core';
+import { users } from 'src/app/common/constants';
+import { User, Task } from 'src/app/common/interfaces';
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css']
+  styleUrls: ['./card.component.scss']
 })
-export class CardComponent implements OnInit {
-  @Input() taskName:any;
+export class CardComponent implements OnChanges {
+  @Input() public task: Task | undefined;
+  public user: User | undefined;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  ngOnChanges(changes:SimpleChanges): void {
+    if (changes['task']) {
+      this.user = users.find(user => user.id === this.task?.executorId);
+    }
   }
-
 }

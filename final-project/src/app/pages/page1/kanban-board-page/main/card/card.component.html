@@ -1,20 +1,26 @@
-
-  <div class="line"></div>
-  <div class="task">
-    <div class="flex-container">
-      <div class="head">
-        <div class="task-name">{{taskName.name}}</div>
-        <div class="regular-text">{{taskName.money}} ₽</div>
-        <div class="ligth-text">{{taskName.date}}</div>
-      </div>
-      <div>
-        0
-      </div>
-    </div>
-    <div class="info">
-      <div class="ligth-text" *ngIf="taskName.dateChange">Дата изменения</div>
-      <div class="regular-text">{{taskName.dateChange}}</div>
-      <div class="ligth-text">Исполнитель</div>
-      <div>{{taskName.executor}}</div>
-    </div>
+<mat-card *ngIf="task" class="example-card"
+          [ngClass]="{
+            'low': task.priorityId === 0,
+            'middle': task.priorityId === 1,
+            'high': task.priorityId === 2,
+            'critical': task.priorityId === 3
+          }">
+  <div>
+    <mat-card-title class="title"> {{task.name}} </mat-card-title>
+    <mat-card-subtitle> {{task.createDate | date}} </mat-card-subtitle>
   </div>
+  <mat-card-content>
+    <div class="task-content">
+      <mat-card-subtitle> Дата изменения </mat-card-subtitle>
+      <p> {{task.lastUpdateDate | date}} </p>
+    </div>
+    <div class="task-content" *ngIf="user">
+      <mat-card-subtitle> Исполнитель </mat-card-subtitle>
+      <div class="user">
+        <img [src]="user.imgUrl">
+        <span> {{user.name}} </span>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+
