@@ -8,8 +8,9 @@ import { SidebarComponent } from './pages/page1/kanban-board-page/sidebar/sideba
 import { MainComponent } from './pages/page1/kanban-board-page/main/main.component';
 import { KanbanBoardPageComponent } from './pages/page1/kanban-board-page/kanban-board-page.component';
 import { CardComponent } from './pages/page1/kanban-board-page/main/card/card.component';
-
+import {MatButtonModule} from '@angular/material/button';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+
 
 @NgModule({
   declarations: [
@@ -18,12 +19,13 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     SidebarComponent,
     MainComponent,
     KanbanBoardPageComponent,
-    CardComponent
+    CardComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    DragDropModule
+    DragDropModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

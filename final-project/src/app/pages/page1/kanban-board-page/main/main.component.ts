@@ -1,7 +1,7 @@
 import { KanbanBoardService } from './../kanban-board.service';
 import { Component, OnInit } from '@angular/core';
-
-import { map, Observable } from 'rxjs';
+import { CdkDragDrop, moveItemInArray, transferArrayItem, } from '@angular/cdk/drag-drop';
+import { findIndex, map, Observable, switchMap } from 'rxjs';
 import { Card } from './card/card-interface';
 
 @Component({
@@ -24,9 +24,11 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
-  public getLengthOfArray(array:Observable<Card[]>) {
-    // return array.
+  drop(event: CdkDragDrop<string[]>) {
+    // moveItemInArray(this.requestIncoming$ as any, event.previousIndex, event.currentIndex);
+  this.requestIncoming$.pipe(
+      // map((data, index) => )
+  );
   }
 
 }
