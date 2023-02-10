@@ -9,8 +9,8 @@
             <button class="btn btn-outline-secondary" type="button">пип</button>
           </div>
       </div>
-    </div> -->
-
+    </div>
+ -->
 
         <main>
           <ng-container *ngFor="let status of statuses">
@@ -25,16 +25,16 @@
                     {{status.name.toUpperCase()}}
                     <span class="badge" color="secondary"> {{ tasks.length }} </span>
                   </span>
-              <ng-container class="tasks">
+                  <h1 class="money">{{getSumOfMoneyFromAllTasks(tasks)}} ₽</h1>
                 <app-card *ngFor="let task of tasks"
-                [task]="task"
-                cdkDrag>
-      </app-card>
-              </ng-container>
+                            [task]="task"
+                            cdkDrag
+                            class="tasks">
+                </app-card>
             </div>
           </ng-container>
         </main>
-    <!-- </div> -->
+
   <!-- </div>
 </div> -->
 

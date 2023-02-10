@@ -8,8 +8,13 @@ export const users: User[] = [
   },
   {
     id: 1,
-    name: 'Vyacheslav Litvinenko',
-    imgUrl: 'https://sun9-70.userapi.com/impf/c851428/v851428511/dc9c/X5rqZO2l3Q8.jpg?size=939x938&quality=96&sign=23067997c0ef1020b9459d5baf7f582f&type=album'
+    name: 'Ума Турман',
+    imgUrl: 'https://lostfilm.info/images/photo_actor/85/303380_846260.jpg'
+  },
+  {
+    id: 2,
+    name: 'Сэмюэл Л. Джексон',
+    imgUrl: 'https://s3.vcdn.biz/static/f/2312447601/image.jpg'
   }
 ];
 
@@ -84,7 +89,7 @@ export const beginTasks: Task[] = [
     money: 500,
     lastUpdateDate: new Date(),
     createDate: new Date(),
-    executorId: 0,
+    executorId: 1,
     priorityId: 1,
     statusId: 1,
     statusPosition: 0,
@@ -106,7 +111,7 @@ export const beginTasks: Task[] = [
     money: 500,
     lastUpdateDate: new Date(),
     createDate: new Date(),
-    executorId: 0,
+    executorId: 2,
     priorityId: 2,
     statusId: 3,
     statusPosition: 0,

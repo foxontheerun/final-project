@@ -43,6 +43,10 @@ export class MainComponent {
     return this.statuses.filter(status => status.id !== statusId).map(status => `status-${status.id}`);
   }
 
+  public getSumOfMoneyFromAllTasks(arr:Task[]):number {
+        return arr.reduce((sum, elem) => sum + elem.money, 0)
+  }
+
   public drop(event: CdkDragDrop<Task[]>): void {
     const taskId = event.previousContainer.data[event.previousIndex].id;
     const newStatusId = Number(event.container.id.slice(7));
