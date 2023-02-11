@@ -15,8 +15,8 @@ import {MatCardModule} from "@angular/material/card";
 import {MatBadgeModule} from "@angular/material/badge";
 import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
-
-
+import { CreateTaskDialogComponent } from './pages/page1/kanban-board-page/main/create-task-dialog/create-task-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +25,7 @@ import {MatListModule} from '@angular/material/list';
     MainComponent,
     KanbanBoardPageComponent,
     CardComponent,
+    CreateTaskDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +35,8 @@ import {MatListModule} from '@angular/material/list';
     MatBadgeModule,
     MatCardModule,
     MatButtonModule,
-    MatListModule
+    MatListModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

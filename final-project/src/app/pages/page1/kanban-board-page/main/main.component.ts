@@ -1,10 +1,12 @@
 
-import { Component, OnInit } from '@angular/core';
-import { CdkDragDrop, moveItemInArray, transferArrayItem, } from '@angular/cdk/drag-drop';
-import { findIndex, map, Observable, switchMap } from 'rxjs';
+import { Component } from '@angular/core';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { map } from 'rxjs';
 import { TasksDataService } from 'src/app/services/tasks-data.service';
 import { taskStatuses } from 'src/app/common/constants';
-import { User, Task } from 'src/app/common/interfaces';
+import { Task } from 'src/app/common/interfaces';
+import {MatDialog} from '@angular/material/dialog';
+import { CreateTaskDialogComponent } from './create-task-dialog/create-task-dialog.component';
 
 @Component({
   selector: 'app-main',
@@ -30,7 +32,8 @@ export class MainComponent {
   );
   public readonly statuses = taskStatuses;
 
-  constructor(private readonly data: TasksDataService) {
+  constructor(private readonly data: TasksDataService,
+              private readonly dialog: MatDialog) {
   }
 
   public getSortedTasksFromMap(map: Map<number, Task[]> | null, key: number): Task[] {
@@ -54,4 +57,15 @@ export class MainComponent {
     this.data.changeTaskByDrop(taskId, newStatusId, newStatusPosition);
   }
 
+
+  public openDialog() {
+    const dialogRef = this.dialog.open(CreateTaskDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
 }
+
+
