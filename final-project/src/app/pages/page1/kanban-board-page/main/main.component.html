@@ -1,8 +1,12 @@
-<!-- <div class="root">
-  <div class="board">
+<div class="root">
     <div class="board-bar">
-      <h3>Заявки</h3>
-      <button mat-flat-button color="primary">Добавить сделку</button>
+      <mat-card-title>Заявки</mat-card-title>
+      <button type="button" class="btn btn-primary" id="add-task">
+        <span class="material-symbols-outlined">
+          add
+        </span>
+        Добавить сделку
+      </button>
       <div class="input-group">
           <input type="text" class="form-control" aria-label="Имя получателя" aria-describedby="basic-addon2">
           <div class="input-group-append">
@@ -10,7 +14,7 @@
           </div>
       </div>
     </div>
- -->
+
 
         <main>
           <ng-container *ngFor="let status of statuses">
@@ -21,11 +25,12 @@
                  [cdkDropListData]="tasks"
                  [cdkDropListConnectedTo]="getConnectedStatuses(status.id)"
                  (cdkDropListDropped)="drop($event)">
-                  <span class="status" color="primary">
+                  <div class="status" color="primary">
                     {{status.name.toUpperCase()}}
                     <span class="badge" color="secondary"> {{ tasks.length }} </span>
-                  </span>
-                  <h1 class="money">{{getSumOfMoneyFromAllTasks(tasks)}} ₽</h1>
+                  </div>
+                  <div class="money">{{getSumOfMoneyFromAllTasks(tasks)}} ₽</div>
+                  <button type="button" class="btn btn-light">+   Быстрая сделка</button>
                 <app-card *ngFor="let task of tasks"
                             [task]="task"
                             cdkDrag
@@ -34,7 +39,5 @@
             </div>
           </ng-container>
         </main>
-
-  <!-- </div>
-</div> -->
+</div>
 
