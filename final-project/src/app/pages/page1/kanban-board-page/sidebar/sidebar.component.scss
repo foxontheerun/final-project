@@ -1,0 +1,23 @@
+button {
+    border-radius: 20px;
+}
+
+.root{
+    width: 14vw;
+    min-height: 100%;
+    padding-left: 16px;
+    mat-list-item {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 140%;
+        display: flex;
+        align-items: center;
+        color: rgba(0, 32, 51, 0.6);
+    }
+    
+    button {
+        border-radius: 20px;
+    }
+}

@@ -30,6 +30,7 @@ export class MainComponent {
       return result;
     })
   );
+
   public readonly statuses = taskStatuses;
 
   constructor(private readonly data: TasksDataService,
@@ -47,7 +48,7 @@ export class MainComponent {
   }
 
   public getSumOfMoneyFromAllTasks(arr:Task[]):number {
-        return arr.reduce((sum, elem) => sum + elem.money, 0)
+    return arr.reduce((sum, elem) => sum + elem.money, 0)
   }
 
   public drop(event: CdkDragDrop<Task[]>): void {
@@ -56,7 +57,6 @@ export class MainComponent {
     const newStatusPosition = event.currentIndex;
     this.data.changeTaskByDrop(taskId, newStatusId, newStatusPosition);
   }
-
 
   public openDialog() {
     const dialogRef = this.dialog.open(CreateTaskDialogComponent);
