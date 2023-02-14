@@ -1,12 +1,31 @@
 <div class="low dialog">
-  <div class="container">
-    <h4 mat-dialog-title>{{"Редактирование заявки".toUpperCase()}}</h4>
+  <mat-dialog-content >
+    <mat-card-subtitle mat-dialog-title>{{"Редактирование заявки".toUpperCase()}}</mat-card-subtitle>
     <div class="mat-typography">
       <h1>sdfvjskdhvkj</h1>
+      <form>
+        <div class="form-group">
+          <select class="custom-select" id="inputGroupSelect01">
+            <option selected>Choose...</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button mat-dialog-close type="submit" class="btn btn-primary">Submit</button>
+      </form>
     </div>
-    <mat-dialog-actions align="end">
-      <button mat-button mat-dialog-close>Отменить</button>
-      <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Сохранить</button>
-    </mat-dialog-actions>
-  </div>
+    <!-- <mat-dialog-actions align="end">
+      <button mat-dialog-close class="btn">Отменить</button>
+      <button mat-dialog-close="true" class="btn btn-primary">Сохранить</button>
+    </mat-dialog-actions> -->
+  </mat-dialog-content>
 </div>

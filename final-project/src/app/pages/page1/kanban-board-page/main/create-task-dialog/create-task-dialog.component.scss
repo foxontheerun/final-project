@@ -1,0 +1,38 @@
+.dialog {
+    border-top: solid 8px;
+    .mat-dialog-content {
+      margin: 16px 0 !important; 
+      overflow:visible; 
+
+      mat-card-subtitle {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        letter-spacing: 0.03em;
+      }
+      mat-dialog-actions {
+        button {
+          margin-left: 13px;
+        }
+      }
+    }
+}  
+
+
+.low {
+    border-color: rgb(68, 204, 219);
+  }
+  
+  .middle {
+    border-color: rgb(255, 164, 41);
+  }
+  
+  .high {
+    border-color: rgb(187, 139, 179);
+  }
+  
+  .critical {
+    border-color: #ff4443;
+  }
+  

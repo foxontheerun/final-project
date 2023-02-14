@@ -27,4 +27,5 @@ export class TasksDataService {
     };
     this.tasks$.next(tasksList);
   }
+
 }

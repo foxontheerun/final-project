@@ -14,8 +14,7 @@ import { CreateTaskDialogComponent } from './create-task-dialog/create-task-dial
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent {
-
-
+  
   public readonly tasksGroupedByStatus$ = this.data.tasks.pipe(
     map(tasks => {
       const result = new Map<number, Task[]>();
@@ -60,7 +59,6 @@ export class MainComponent {
 
   public openDialog() {
     const dialogRef = this.dialog.open(CreateTaskDialogComponent);
-
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });

@@ -21,8 +21,6 @@ export class CardComponent implements OnChanges {
     }
   }
 
-
-
   public openDialog() {
     const dialogRef = this.dialog.open(CreateTaskDialogComponent, {
       data: { task: this.task },
