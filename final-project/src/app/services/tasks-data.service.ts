@@ -8,6 +8,7 @@ import { beginTasks } from '../common/constants';
 })
 export class TasksDataService {
   private readonly tasks$ = new BehaviorSubject<Task[]>(beginTasks);
+  
   public get tasks(): Observable<Task[]> {
     return this.tasks$.asObservable();
   }

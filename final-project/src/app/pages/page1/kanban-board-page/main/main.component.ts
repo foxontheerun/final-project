@@ -5,7 +5,7 @@ import { map } from 'rxjs';
 import { TasksDataService } from 'src/app/services/tasks-data.service';
 import { taskStatuses } from 'src/app/common/constants';
 import { Task } from 'src/app/common/interfaces';
-import {MatDialog} from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CreateTaskDialogComponent } from './create-task-dialog/create-task-dialog.component';
 
 @Component({

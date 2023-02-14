@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogConfig } from '@angular/material/dialog';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 
 @Component({
@@ -8,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateTaskDialogComponent implements OnInit {
 
-  constructor() { }
+  constructor(@Inject(MAT_DIALOG_DATA) private data: {taskId: number}) { }
+  
 
   ngOnInit(): void {
+
   }
 
 }

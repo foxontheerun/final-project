@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, SimpleChanges,  OnChanges } from '@angular/core';
 import { users } from 'src/app/common/constants';
 import { User, Task } from 'src/app/common/interfaces';
-import {MatDialog} from '@angular/material/dialog';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { CreateTaskDialogComponent } from "../create-task-dialog/create-task-dialog.component"
 
 @Component({
@@ -21,9 +21,12 @@ export class CardComponent implements OnChanges {
     }
   }
 
-  public openDialog() {
-    const dialogRef = this.dialog.open(CreateTaskDialogComponent);
 
+
+  public openDialog() {
+    const dialogRef = this.dialog.open(CreateTaskDialogComponent, {
+      data: { task: this.task },
+    });
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
