@@ -8,6 +8,7 @@ export interface Task {
     priorityId: number;
     statusId: number;
     statusPosition: number;
+    comment: string;
   }
   
   export interface User {

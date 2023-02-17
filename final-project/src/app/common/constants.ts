@@ -71,6 +71,7 @@ export const beginTasks: Task[] = [
     priorityId: 0,
     statusId: 0,
     statusPosition: 0,
+    comment: ''
   },
   {
     id: 1,
@@ -82,6 +83,7 @@ export const beginTasks: Task[] = [
     priorityId: 3,
     statusId: 0,
     statusPosition: 1,
+    comment: ''
   },
   {
     id: 2,
@@ -93,6 +95,7 @@ export const beginTasks: Task[] = [
     priorityId: 1,
     statusId: 1,
     statusPosition: 0,
+    comment: ''
   },
   {
     id: 3,
@@ -104,6 +107,7 @@ export const beginTasks: Task[] = [
     priorityId: 0,
     statusId: 2,
     statusPosition: 0,
+    comment: ''
   },
   {
     id: 4,
@@ -115,5 +119,6 @@ export const beginTasks: Task[] = [
     priorityId: 2,
     statusId: 3,
     statusPosition: 0,
+    comment: ''
   },
 ];

@@ -1,42 +1,46 @@
 <div class="low dialog">
-  <form>
+  <form #myForm="ngForm" novalidate >
   <mat-dialog-content class="border-bottom">
     <mat-card-subtitle mat-dialog-title>{{"Редактирование заявки" | uppercase}}</mat-card-subtitle>
-    <select class="custom-select mb-3 status" id="inputGroupSelect01" >
-      <option selected>Статус заявки</option>
-      <option value="1">One</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
-    </select>
+    <mat-form-field appearance="outline" name="status" >
+      <mat-label>Статус заявки</mat-label>
+      <mat-select [(value)]="task.statusId">
+        <mat-option *ngFor="let statuse of statuses" [value]="statuse.id">{{statuse.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
   </mat-dialog-content>
   <mat-dialog-content >
         <mat-card-title>Корректировка значений по ВКУ-321</mat-card-title>
-        <div class="form-group">
+        <div >
           <mat-card-subtitle>Приоритет:</mat-card-subtitle>
-          <select class="custom-select" id="inputGroupSelect01">
-            <option selected>Choose...</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
+          <mat-form-field appearance="outline" name="priorities">
+            <mat-select [(value)]="task.priorityId">
+              <mat-option *ngFor="let prioritie of priorities" [value]="prioritie.id">{{prioritie.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
-        <div class="form-group">
+        <div >
           <mat-card-subtitle>Исполнитель:</mat-card-subtitle>
-          <select class="custom-select" id="inputGroupSelect01">
-            <option selected>Choose...</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
+          <mat-form-field appearance="outline" name="users">
+            <mat-select [(value)]="task.executorId">
+              <mat-option *ngFor="let user of users" [value]="user.id">{{user.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!-- <div>{{selectedUserId}}</div> -->
         </div>
-        <div class="form-group">
+        <div >
           <mat-card-subtitle>Комментарий:</mat-card-subtitle>
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+          <mat-form-field appearance="outline">
+            <textarea matInput [(ngModel)]="task.comment" name="message" rows="5"></textarea>
+          </mat-form-field>
+          <!-- <textarea ngModel  class="form-control" id="exampleFormControlTextarea1"  ></textarea> -->
         </div>
         <mat-dialog-actions align="end">
           <button mat-dialog-close class="btn">Отменить</button>
-          <button type="submit" mat-dialog-close="true" class="btn btn-primary">Сохранить</button>
+          <button  (click)="go()" mat-dialog-close="true" class="btn btn-primary">Сохранить</button>
         </mat-dialog-actions>
   </mat-dialog-content>
 </form>
 </div>
+
+
