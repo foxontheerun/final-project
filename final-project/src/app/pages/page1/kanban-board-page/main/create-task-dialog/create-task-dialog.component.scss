@@ -3,19 +3,34 @@
     .mat-dialog-content {
       margin: 16px 0 !important; 
       overflow:visible; 
-
+      .status {
+        width: 200px;
+        height: 28px;
+        font-size: 12px;
+        padding: 0 0 0 7px;
+      }
+      mat-card-title {
+        margin-top: 24px;
+        margin-bottom: 18px;
+      }
       mat-card-subtitle {
         font-family: 'Inter';
         font-style: normal;
         font-weight: 600;
         font-size: 14px;
         letter-spacing: 0.03em;
+        margin-bottom: 8px;
       }
       mat-dialog-actions {
+        margin-top: 0;
+        padding: 0;
         button {
           margin-left: 13px;
         }
       }
+    }
+    textarea {
+      resize: none; 
     }
 }  
 
