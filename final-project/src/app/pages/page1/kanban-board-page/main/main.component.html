@@ -31,11 +31,11 @@
                   </div>
                   <div class="money">{{getSumOfMoneyFromAllTasks(tasks)}} ₽</div>
                   <button type="button" class="btn btn-light">+   Быстрая сделка</button>
-                <app-card *ngFor="let task of tasks"
-                            [task]="task"
-                            cdkDrag
-                            class="tasks">
-                </app-card>
+                  <app-card *ngFor="let task of tasks"
+                              [task]="task"
+                              cdkDrag
+                              class="tasks">
+                  </app-card>
             </div>
           </ng-container>
         </main>

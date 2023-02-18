@@ -3,7 +3,31 @@
     .mat-dialog-content {
       margin: 16px 0 !important; 
       overflow:visible; 
-    
+
+
+
+        .flex-box{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            div {
+              width: 300px;
+              display: flex;
+              justify-content: end;
+              margin-bottom: 14px;
+              label {
+                border: solid 1px  #32B4FF;
+                color:rgb(68, 204, 219);
+                border-radius: 15px;
+                font-size: 12px;
+                height: 30px;
+                padding: 2px 15px 0 15px;
+                display: flex;
+                align-items: center;
+              }
+            }
+           
+        }
         .mat-form-field {
           width: 100% !important;
           font-family: 'Inter';
@@ -19,24 +43,7 @@
          
         }
       
-      // .mat-form-field {
-      //   width: 100% !important;
-      //   font-family: 'Inter';
-    
-      //   ::ng-deep  .mat-select-arrow-wrapper {
-      //       transform: none !important;
-      //     }
         
-        
-   
-    
-      //   ::ng-deep .mat-form-field-infix {
-      //     padding: 0 0 7px 0; 
-      //  }
-       
-       
-      // }
-      
       mat-card-title {
         margin-top: 24px;
         margin-bottom: 18px;
@@ -86,4 +93,21 @@
 
   .mat-form-field-wrapper {
     padding-bottom: 0 !important; 
+}
+
+
+.low-text {
+  color: rgb(68, 204, 219);
+}
+
+.middle-text {
+  color: rgb(255, 164, 41);
+}
+
+.high-text {
+  color: rgb(187, 139, 179);
+}
+
+.critical-text {
+  color: #ff4443;
 }

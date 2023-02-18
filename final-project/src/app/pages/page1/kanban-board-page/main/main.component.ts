@@ -1,6 +1,6 @@
 
 import { Component } from '@angular/core';
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop';
 import { map } from 'rxjs';
 import { TasksDataService } from 'src/app/services/tasks-data.service';
 import { taskStatuses } from 'src/app/common/constants';
@@ -54,6 +54,7 @@ export class MainComponent {
     const taskId = event.previousContainer.data[event.previousIndex].id;
     const newStatusId = Number(event.container.id.slice(7));
     const newStatusPosition = event.currentIndex;
+
     this.data.changeTaskByDrop(taskId, newStatusId, newStatusPosition);
   }
 

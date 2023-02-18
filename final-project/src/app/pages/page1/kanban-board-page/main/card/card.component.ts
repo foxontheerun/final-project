@@ -4,6 +4,7 @@ import { User, Task } from 'src/app/common/interfaces';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { CreateTaskDialogComponent } from "../create-task-dialog/create-task-dialog.component"
 
+
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',

@@ -28,34 +28,15 @@ export class TasksDataService {
     this.tasks$.next(tasksList);
   }
 
-  // public editTask(taskId: number, statusId: number, executorId: number, priorityId: number, comment:string) {
-  //   const tasksList = this.tasks$.value;
-  //   const index = tasksList.findIndex(task => task.id === taskId);
-  //   const previousStatusPosition = tasksList[index].statusPosition;
-  //   const previousStatusId = tasksList[index].statusId;
- 
-  //   const newStatusPosition = tasksList.filter(task => task.statusId === statusId).length;
-  //   tasksList
-  //     .filter(task => task.statusId === previousStatusId)
-  //     .filter(task => task.statusPosition >= previousStatusPosition)
-  //     .forEach(task => task.statusPosition -= 1)
-  //   tasksList[index] = {
-  //     ...tasksList[index],
-  //     statusId,
-  //     executorId,
-  //     priorityId,
-  //     statusPosition: newStatusPosition,
-  //     comment
-  //   }
-  //   this.tasks$.next(tasksList);
-  // }
   public editTask(newTask:Task) {
     const tasksList = this.tasks$.value;
     const index = tasksList.findIndex(task => task.id === newTask.id);
     const previousStatusPosition = tasksList[index].statusPosition;
     const previousStatusId = tasksList[index].statusId;
- 
-    const newStatusPosition = tasksList.filter(task => task.statusId === newTask.statusId).length;
+    const newStatusPosition = 
+    previousStatusId !==  newTask.statusId 
+      ? tasksList.filter(task => task.statusId === newTask.statusId).length
+      : newTask.statusId;
     tasksList
       .filter(task => task.statusId === previousStatusId)
       .filter(task => task.statusPosition >= previousStatusPosition)
