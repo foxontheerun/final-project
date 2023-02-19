@@ -11,20 +11,24 @@ import { TasksDataService } from 'src/app/services/tasks-data.service';
   styleUrls: ['./create-task-dialog.component.scss']
 })
 export class CreateTaskDialogComponent {
-
   public readonly statuses = taskStatuses;
   public readonly users = users;
   public readonly priorities = taskPriorities;
 
-  public task:Task = this.data.task;
-  
-  public taskStatuseName = this.statuses.find(item => item.id === this.task.statusId)?.name;
+  public task:Task = Object.assign({}, this.data.task);
   
   constructor(@Inject(MAT_DIALOG_DATA) private data: {task: Task},
               private readonly dataService: TasksDataService) { }
 
+
   submit():void{
+    this.updateDate();
     this.dataService.editTask(this.task);
+  }
+
+  private updateDate():void {
+    const updateDate = new Date();
+    this.task.lastUpdateDate = updateDate;
   }
 
 

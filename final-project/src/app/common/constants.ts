@@ -1,4 +1,4 @@
-import { User, Task } from './interfaces';
+import { User, Task, Group } from './interfaces';
 
 export const users: User[] = [
   {
@@ -9,7 +9,7 @@ export const users: User[] = [
   {
     id: 1,
     name: 'Ума Турман',
-    imgUrl: 'https://lostfilm.info/images/photo_actor/85/303380_846260.jpg'
+    imgUrl: 'https://icdn.lenta.ru/images/2021/09/22/09/20210922095410877/square_1280_72c85936e292a3048eb9cc510a5e083a.jpg'
   },
   {
     id: 2,
@@ -63,6 +63,7 @@ export const taskPriorities = [
 export const beginTasks: Task[] = [
   {
     id: 0,
+    workingGroupId: 1,
     name: 'Обновление ПО',
     money: 2500,
     lastUpdateDate: new Date(),
@@ -75,6 +76,7 @@ export const beginTasks: Task[] = [
   },
   {
     id: 1,
+    workingGroupId: 1,
     name: 'Ошибка датчика',
     money: 500,
     lastUpdateDate: new Date(),
@@ -92,6 +94,7 @@ export const beginTasks: Task[] = [
     lastUpdateDate: new Date(),
     createDate: new Date(),
     executorId: 1,
+    workingGroupId: 1,
     priorityId: 1,
     statusId: 1,
     statusPosition: 0,
@@ -104,6 +107,7 @@ export const beginTasks: Task[] = [
     lastUpdateDate: new Date(),
     createDate: new Date(),
     executorId: 0,
+    workingGroupId: 1,
     priorityId: 0,
     statusId: 2,
     statusPosition: 0,
@@ -116,9 +120,48 @@ export const beginTasks: Task[] = [
     lastUpdateDate: new Date(),
     createDate: new Date(),
     executorId: 2,
+    workingGroupId: 1,
     priorityId: 2,
     statusId: 3,
     statusPosition: 0,
     comment: ''
   },
+  {
+    id: 5,
+    name: 'Корректировка значений по ВКУ-321',
+    money: 500,
+    lastUpdateDate: new Date(),
+    createDate: new Date(),
+    executorId: 2,
+    workingGroupId: 2,
+    priorityId: 2,
+    statusId: 3,
+    statusPosition: 0,
+    comment: ''
+  },
+  {
+    id: 6,
+    name: 'Корректировка значений по ВКУ-321',
+    money: 3500,
+    lastUpdateDate: new Date(),
+    createDate: new Date(),
+    executorId: 1,
+    workingGroupId: 3,
+    priorityId: 3,
+    statusId: 4,
+    statusPosition: 0,
+    comment: ''
+  },
+];
+
+export const workingGroups: Group[] = [
+  {
+    id: 1,
+  },
+  {
+    id: 2,
+  },
+  {
+    id: 3,
+  }
 ];

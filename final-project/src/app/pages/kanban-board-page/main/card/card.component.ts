@@ -1,7 +1,8 @@
-import { Component, Input, OnInit, SimpleChanges,  OnChanges } from '@angular/core';
+import { Group } from './../../../../common/interfaces';
+import { Component, Input,  SimpleChanges,  OnChanges } from '@angular/core';
 import { users } from 'src/app/common/constants';
 import { User, Task } from 'src/app/common/interfaces';
-import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {MatDialog} from '@angular/material/dialog';
 import { CreateTaskDialogComponent } from "../create-task-dialog/create-task-dialog.component"
 
 
@@ -12,6 +13,7 @@ import { CreateTaskDialogComponent } from "../create-task-dialog/create-task-dia
 })
 export class CardComponent implements OnChanges {
   @Input() public task: Task | undefined;
+
   public user: User | undefined;
 
   constructor(private readonly dialog: MatDialog) {}

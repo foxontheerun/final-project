@@ -14,8 +14,6 @@
           </div>
       </div>
     </div>
-
-
         <main>
           <ng-container *ngFor="let status of statuses">
             <div *ngIf="getSortedTasksFromMap((tasksGroupedByStatus$ | async), status.id) as tasks"
@@ -31,11 +29,12 @@
                   </div>
                   <div class="money">{{getSumOfMoneyFromAllTasks(tasks)}} ₽</div>
                   <button type="button" class="btn btn-light">+   Быстрая сделка</button>
-                  <app-card *ngFor="let task of tasks"
+                    <app-card 
+                              *ngFor="let task of tasks"
                               [task]="task"
                               cdkDrag
                               class="tasks">
-                  </app-card>
+                    </app-card>             
             </div>
           </ng-container>
         </main>

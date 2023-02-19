@@ -1,8 +1,8 @@
 <div class="root">
   <mat-list role="list">
-    <mat-list-item role="listitem">Рабочая группа 1</mat-list-item>
-    <mat-list-item role="listitem">Рабочая группа 2</mat-list-item>
-    <mat-list-item role="listitem">Рабочая группа 3</mat-list-item>
+    <mat-list-item role="listitem" *ngFor="let group of groups$ | async">
+      <a [routerLink]="['/working-group', group.id]">Рабочая группа {{group.id}}</a>
+    </mat-list-item>
   </mat-list>
-<button type="button" class="btn btn-outline-primary m-2">Добавить группу</button>
+<button (click)="addNewGroup()" type="button" class="btn btn-outline-primary m-2">Добавить группу</button>
 </div>

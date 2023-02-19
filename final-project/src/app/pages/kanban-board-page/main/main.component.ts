@@ -1,24 +1,26 @@
 
-import { Component } from '@angular/core';
-import { CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop';
-import { map } from 'rxjs';
+import { Component, OnInit,} from '@angular/core';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { map, switchMap } from 'rxjs';
 import { TasksDataService } from 'src/app/services/tasks-data.service';
 import { taskStatuses } from 'src/app/common/constants';
 import { Task } from 'src/app/common/interfaces';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { CreateTaskDialogComponent } from './create-task-dialog/create-task-dialog.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent {
-  
+export class MainComponent implements OnInit{
+  public groupId = 1;
+
   public readonly tasksGroupedByStatus$ = this.data.tasks.pipe(
     map(tasks => {
       const result = new Map<number, Task[]>();
-      tasks.forEach(task => {
+      tasks.forEach(task => { 
         if (result.has(task.statusId)) {
           result.get(task.statusId)?.push(task);
         }
@@ -33,13 +35,22 @@ export class MainComponent {
   public readonly statuses = taskStatuses;
 
   constructor(private readonly data: TasksDataService,
-              private readonly dialog: MatDialog) {
+              private readonly dialog: MatDialog,
+              private readonly route: ActivatedRoute) {
+  }
+
+  ngOnInit(): void {
+    this.route.paramMap.pipe(
+      switchMap(params => params.getAll('id'))
+    )
+    .subscribe(data => this.groupId = +data);
   }
 
   public getSortedTasksFromMap(map: Map<number, Task[]> | null, key: number): Task[] {
     return (
       map?.get(key) ?? []
-    ).sort((a, b) => a.statusPosition - b.statusPosition);
+    ).sort((a, b) => a.statusPosition - b.statusPosition)
+    .filter(task => task.workingGroupId === this.groupId);
   }
 
   public getConnectedStatuses(statusId: number): string[] {

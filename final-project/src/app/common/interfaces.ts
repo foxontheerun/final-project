@@ -5,6 +5,7 @@ export interface Task {
     lastUpdateDate: Date;
     createDate: Date;
     executorId: number;
+    workingGroupId: number;
     priorityId: number;
     statusId: number;
     statusPosition: number;
@@ -17,3 +18,6 @@ export interface Task {
     imgUrl: string;
   }
   
+  export interface Group {
+    id: number
+  }

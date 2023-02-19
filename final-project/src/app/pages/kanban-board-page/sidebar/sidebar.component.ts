@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { workingGroups } from 'src/app/common/constants';
+import { TasksDataService } from 'src/app/services/tasks-data.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-
-  constructor() { }
+  public readonly groups$ = this.data.workingGroups;
+  
+  constructor(private readonly data: TasksDataService) { }
 
   ngOnInit(): void {
   }
 
+  public addNewGroup():void {
+    this.data.addNewWorkingGroup();
+  }
 }

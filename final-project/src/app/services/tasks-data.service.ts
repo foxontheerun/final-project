@@ -1,6 +1,7 @@
+import { workingGroups } from 'src/app/common/constants';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Task } from '../common/interfaces';
+import { Group, Task } from '../common/interfaces';
 import { beginTasks } from '../common/constants';
 
 @Injectable({
@@ -8,9 +9,18 @@ import { beginTasks } from '../common/constants';
 })
 export class TasksDataService {
   private readonly tasks$ = new BehaviorSubject<Task[]>(beginTasks);
+  private readonly workingGroups$ = new BehaviorSubject<Group[]>(workingGroups);
   
   public get tasks(): Observable<Task[]> {
     return this.tasks$.asObservable();
+  }
+
+  public getTasksByWorkingGroup() {
+    
+  }
+
+  public get workingGroups(): BehaviorSubject<Group[]> {
+    return this.workingGroups$;
   }
 
   public changeTaskByDrop(taskId: number, statusId: number, statusPosition: number): void {
@@ -50,5 +60,16 @@ export class TasksDataService {
       comment: newTask.comment
     }
     this.tasks$.next(tasksList);
+  }
+
+  public addNewWorkingGroup() {
+    const workingGroupList = this.workingGroups$.value;
+    const newGroupId = workingGroupList.length + 1;
+    workingGroupList.push(
+      {
+        id: newGroupId
+      }
+    )
+    this.workingGroups$.next(workingGroupList);
   }
 }
