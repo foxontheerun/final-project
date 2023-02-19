@@ -129,10 +129,10 @@ export const beginTasks: Task[] = [
   {
     id: 5,
     name: 'Корректировка значений по ВКУ-321',
-    money: 500,
+    money: 2500,
     lastUpdateDate: new Date(),
     createDate: new Date(),
-    executorId: 2,
+    executorId: 1,
     workingGroupId: 2,
     priorityId: 2,
     statusId: 3,

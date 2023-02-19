@@ -43,7 +43,7 @@ export class MainComponent implements OnInit{
     this.route.paramMap.pipe(
       switchMap(params => params.getAll('id'))
     )
-    .subscribe(data => this.groupId = +data);
+    .subscribe(data => this.groupId = +data)
   }
 
   public getSortedTasksFromMap(map: Map<number, Task[]> | null, key: number): Task[] {
@@ -58,7 +58,7 @@ export class MainComponent implements OnInit{
   }
 
   public getSumOfMoneyFromAllTasks(arr:Task[]):number {
-    return arr.reduce((sum, elem) => sum + elem.money, 0)
+    return arr.reduce((sum, elem) => sum + elem.money, 0);
   }
 
   public drop(event: CdkDragDrop<Task[]>): void {
@@ -70,9 +70,12 @@ export class MainComponent implements OnInit{
   }
 
   public openDialog() {
-    const dialogRef = this.dialog.open(CreateTaskDialogComponent);
+    const newTask = this.data.createNewTask(this.groupId);
+    const dialogRef = this.dialog.open(CreateTaskDialogComponent, {
+      data: { task: newTask },
+    });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      // console.log(`Dialog result: ${result}`);
     });
   }
 

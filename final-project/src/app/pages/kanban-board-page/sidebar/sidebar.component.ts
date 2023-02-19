@@ -8,7 +8,7 @@ import { TasksDataService } from 'src/app/services/tasks-data.service';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  public readonly groups$ = this.data.workingGroups;
+  public readonly groups$ = this.data.workGroups;
   
   constructor(private readonly data: TasksDataService) { }
 
@@ -18,4 +18,9 @@ export class SidebarComponent implements OnInit {
   public addNewGroup():void {
     this.data.addNewWorkingGroup();
   }
+
+  public getTasksNumber(groupId: number) {
+    return this.data.getTasksNumberOfWorkGroup(groupId);
+  }
+
 }

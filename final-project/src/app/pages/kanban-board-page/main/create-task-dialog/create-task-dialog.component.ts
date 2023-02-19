@@ -4,6 +4,10 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {taskStatuses, users, taskPriorities} from "../../../../common/constants";
 import { Task } from 'src/app/common/interfaces'; 
 import { TasksDataService } from 'src/app/services/tasks-data.service';
+import {  Validators } from '@angular/forms';
+import {ErrorStateMatcher} from '@angular/material/core';
+import { MyErrorStateMatcher } from './error-matcher';
+import { FormControl, FormGroupDirective, NgForm } from "@angular/forms";
 
 @Component({
   selector: 'app-create-task-dialog',
@@ -11,10 +15,13 @@ import { TasksDataService } from 'src/app/services/tasks-data.service';
   styleUrls: ['./create-task-dialog.component.scss']
 })
 export class CreateTaskDialogComponent {
+  public nameFormControl = new FormControl('', [Validators.required, Validators.minLength(8)]);  
+  public matcher = new MyErrorStateMatcher();
+
   public readonly statuses = taskStatuses;
   public readonly users = users;
   public readonly priorities = taskPriorities;
-
+  public inputTask = this.data.task;
   public task:Task = Object.assign({}, this.data.task);
   
   constructor(@Inject(MAT_DIALOG_DATA) private data: {task: Task},
@@ -23,7 +30,7 @@ export class CreateTaskDialogComponent {
 
   submit():void{
     this.updateDate();
-    this.dataService.editTask(this.task);
+    this.dataService.editTasksList(this.task);
   }
 
   private updateDate():void {

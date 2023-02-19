@@ -9,18 +9,31 @@ import { beginTasks } from '../common/constants';
 })
 export class TasksDataService {
   private readonly tasks$ = new BehaviorSubject<Task[]>(beginTasks);
-  private readonly workingGroups$ = new BehaviorSubject<Group[]>(workingGroups);
+  private readonly workGroups$ = new BehaviorSubject<Group[]>(workingGroups);
   
   public get tasks(): Observable<Task[]> {
     return this.tasks$.asObservable();
   }
 
-  public getTasksByWorkingGroup() {
-    
+ public createNewTask(groupId: number):Task {
+  const taskIdArray = this.tasks$.value.map(task => task.id);
+  const newId = Math.max.apply(null, taskIdArray) + 1;
+  return {
+      id: newId,
+      name: '',
+      money: 0,
+      lastUpdateDate: new Date(),
+      createDate: new Date(),
+      executorId: 0,
+      workingGroupId: groupId,
+      priorityId: 0,
+      statusId: 0,
+      statusPosition: 0,
+      comment: ''
   }
-
-  public get workingGroups(): BehaviorSubject<Group[]> {
-    return this.workingGroups$;
+ }
+  public get workGroups(): BehaviorSubject<Group[]> {
+    return this.workGroups$;
   }
 
   public changeTaskByDrop(taskId: number, statusId: number, statusPosition: number): void {
@@ -38,38 +51,52 @@ export class TasksDataService {
     this.tasks$.next(tasksList);
   }
 
-  public editTask(newTask:Task) {
+  public editTasksList(newTask:Task) {
     const tasksList = this.tasks$.value;
     const index = tasksList.findIndex(task => task.id === newTask.id);
-    const previousStatusPosition = tasksList[index].statusPosition;
-    const previousStatusId = tasksList[index].statusId;
-    const newStatusPosition = 
-    previousStatusId !==  newTask.statusId 
-      ? tasksList.filter(task => task.statusId === newTask.statusId).length
-      : newTask.statusId;
-    tasksList
-      .filter(task => task.statusId === previousStatusId)
-      .filter(task => task.statusPosition >= previousStatusPosition)
-      .forEach(task => task.statusPosition -= 1)
-    tasksList[index] = {
-      ...tasksList[index],
-      statusId: newTask.statusId,
-      executorId: newTask.executorId,
-      priorityId: newTask.priorityId,
-      statusPosition: newStatusPosition,
-      comment: newTask.comment
+      if (index !== -1) {
+      const previousStatusPosition = tasksList[index].statusPosition;
+      const previousStatusId = tasksList[index].statusId;
+      const newStatusPosition = 
+      previousStatusId !==  newTask.statusId 
+        ? tasksList.filter(task => task.statusId === newTask.statusId).length
+        : newTask.statusId;
+      tasksList
+        .filter(task => task.statusId === previousStatusId)
+        .filter(task => task.statusPosition >= previousStatusPosition)
+        .forEach(task => task.statusPosition -= 1)
+      tasksList[index] = {
+        ...tasksList[index],
+        statusId: newTask.statusId,
+        executorId: newTask.executorId,
+        priorityId: newTask.priorityId,
+        statusPosition: newStatusPosition,
+        comment: newTask.comment
+      }
+    } else {
+      tasksList
+        .filter(task => task.statusId ===  newTask.statusId 
+                        && task.workingGroupId === newTask.workingGroupId)
+        .forEach(task => task.statusPosition += 1)
+      tasksList.push(newTask);
     }
     this.tasks$.next(tasksList);
   }
 
   public addNewWorkingGroup() {
-    const workingGroupList = this.workingGroups$.value;
+    const workingGroupList = this.workGroups$.value;
     const newGroupId = workingGroupList.length + 1;
     workingGroupList.push(
       {
         id: newGroupId
       }
     )
-    this.workingGroups$.next(workingGroupList);
+    this.workGroups$.next(workingGroupList);
   }
+
+  public getTasksNumberOfWorkGroup(id:number):number {
+    const taskList = this.tasks$.value.filter(task => task.workingGroupId === id);
+    return taskList.length;
+  }
+
 }

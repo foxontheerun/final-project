@@ -3,6 +3,11 @@
     .mat-dialog-content {
       margin: 16px 0 !important; 
       overflow:visible; 
+      .flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
         .flex-box{
             display: flex;
             justify-content: space-between;
@@ -54,8 +59,8 @@
         margin-bottom: 8px;
       }
       mat-dialog-actions {
-        margin-top: 0;
-        padding: 0;
+        margin-top: 0 !important;
+        padding: 0 !important;
         button {
           margin-left: 13px;
         }
@@ -84,14 +89,9 @@
   }
   
 
-  .mat-form-field-appearance-outline .mat-form-field-wrapper {
-    margin: 0 !important;
-  }
-
-  .mat-form-field-wrapper {
-    padding-bottom: 0 !important; 
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-wrapper {
+  margin:  0 !important; 
 }
-
 
 .low-text {
   color: rgb(68, 204, 219);
