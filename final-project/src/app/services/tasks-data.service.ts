@@ -15,7 +15,7 @@ export class TasksDataService {
     return this.tasks$.asObservable();
   }
 
- public createNewTask(groupId: number):Task {
+ public createNewTask(groupId: number, statusId: number):Task {
   const taskIdArray = this.tasks$.value.map(task => task.id);
   const newId = Math.max.apply(null, taskIdArray) + 1;
   return {
@@ -27,7 +27,7 @@ export class TasksDataService {
       executorId: 0,
       workingGroupId: groupId,
       priorityId: 0,
-      statusId: 0,
+      statusId,
       statusPosition: 0,
       comment: ''
   }

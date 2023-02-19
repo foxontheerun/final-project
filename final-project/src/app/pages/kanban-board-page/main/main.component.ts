@@ -16,7 +16,6 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MainComponent implements OnInit{
   public groupId = 1;
-
   public readonly tasksGroupedByStatus$ = this.data.tasks.pipe(
     map(tasks => {
       const result = new Map<number, Task[]>();
@@ -31,7 +30,6 @@ export class MainComponent implements OnInit{
       return result;
     })
   );
-
   public readonly statuses = taskStatuses;
 
   constructor(private readonly data: TasksDataService,
@@ -69,14 +67,29 @@ export class MainComponent implements OnInit{
     this.data.changeTaskByDrop(taskId, newStatusId, newStatusPosition);
   }
 
-  public openDialog() {
-    const newTask = this.data.createNewTask(this.groupId);
+  public openDialog(statusId:number = 0) {
+    const newTask = this.data.createNewTask(this.groupId, statusId);
     const dialogRef = this.dialog.open(CreateTaskDialogComponent, {
       data: { task: newTask },
     });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
     });
+  }
+
+  // onMouseEnter(id:string) {
+  //   id.style.color = "green";
+  //   this.buttonText = "Быстрая сделка";
+  // }
+
+
+  onMouseEnter(hoverName: HTMLElement) {
+    hoverName.innerHTML = `<span #thenBlock class="material-symbols-outlined">
+          add
+    </span>Быстрая сделка`;
+  }
+  onMouseLeave(hoverName: HTMLElement) {
+    hoverName.innerHTML = `<span #thenBlock class="material-symbols-outlined">add</span>`;
   }
 
 }

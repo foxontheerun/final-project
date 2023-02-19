@@ -28,7 +28,15 @@
                     <span class="badge" color="secondary"> {{ tasks.length }} </span>
                   </div>
                   <div class="money">{{getSumOfMoneyFromAllTasks(tasks)}} ₽</div>
-                  <button type="button" class="btn btn-light">+   Быстрая сделка</button>
+
+                    <button type="button" class="btn btn-light" (click)="openDialog(status.id)"
+                    #hovername
+                    (mouseenter)="onMouseEnter(hovername)"
+                    (mouseleave)="onMouseLeave(hovername)">
+                      <span #thenBlock class="material-symbols-outlined">
+                        add
+                      </span>
+                    </button>
                     <app-card 
                               *ngFor="let task of tasks"
                               [task]="task"
