@@ -5,7 +5,7 @@ import { KanbanBoardPageComponent } from './pages/kanban-board-page/kanban-board
 import { MainComponent } from './pages/kanban-board-page/main/main.component';
 
 const routes: Routes = [
-  { path: "", component: KanbanBoardPageComponent },
+  { path: "", component: MainComponent },
   { path: 'working-group/:id', component: MainComponent },
 ];
 

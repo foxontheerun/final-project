@@ -16,6 +16,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MainComponent implements OnInit{
   public groupId = 1;
+  public inputSearchValue = "";
   public readonly tasksGroupedByStatus$ = this.data.tasks.pipe(
     map(tasks => {
       const result = new Map<number, Task[]>();
@@ -73,23 +74,19 @@ export class MainComponent implements OnInit{
       data: { task: newTask },
     });
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
+      console.log(`Dialog result: ${result}`);
     });
   }
 
-  // onMouseEnter(id:string) {
-  //   id.style.color = "green";
-  //   this.buttonText = "Быстрая сделка";
-  // }
-
 
   onMouseEnter(hoverName: HTMLElement) {
-    hoverName.innerHTML = `<span #thenBlock class="material-symbols-outlined">
+    hoverName.innerHTML = `<span class="material-symbols-outlined" style="margin-right: 8px">
           add
     </span>Быстрая сделка`;
+
   }
   onMouseLeave(hoverName: HTMLElement) {
-    hoverName.innerHTML = `<span #thenBlock class="material-symbols-outlined">add</span>`;
+    hoverName.innerHTML = `<span class="material-symbols-outlined">add</span>`;
   }
 
 }

@@ -1,18 +1,23 @@
 <div class="root border-left">
     <div class="board-bar">
       <mat-card-title>Заявки</mat-card-title>
-      <button type="button" (click)="openDialog()" class="btn btn-primary" id="add-task">
+      <button mat-flat-button color="primary" id="add-task" (click)="openDialog()" >
         <span class="material-symbols-outlined">
           add
         </span>
         Добавить сделку
       </button>
       <div class="input-group">
-          <input type="text" class="form-control" aria-label="Имя получателя" aria-describedby="basic-addon2">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button">пип</button>
-          </div>
+          <mat-form-field class="example-form-field">
+            <input matInput type="text" [(ngModel)]="inputSearchValue">
+            <button  matSuffix mat-icon-button aria-label="Clear" (click)="inputSearchValue=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
       </div>
+      <button mat-button mat-stroked-button aria-label="search">
+        <mat-icon>search</mat-icon>
+      </button>
     </div>
         <main>
           <ng-container *ngFor="let status of statuses">
@@ -28,21 +33,23 @@
                     <span class="badge" color="secondary"> {{ tasks.length }} </span>
                   </div>
                   <div class="money">{{getSumOfMoneyFromAllTasks(tasks)}} ₽</div>
-
-                    <button type="button" class="btn btn-light" (click)="openDialog(status.id)"
-                    #hovername
-                    (mouseenter)="onMouseEnter(hovername)"
-                    (mouseleave)="onMouseLeave(hovername)">
-                      <span #thenBlock class="material-symbols-outlined">
+                  <!-- <ng-template> -->
+                  <button mat-stroked-button  (click)="openDialog(status.id)"
+                    (mouseenter)="onMouseEnter(thenBlock)" 
+                    (mouseleave)="onMouseLeave(thenBlock)">
+                    <div #thenBlock>
+                      <span  class="material-symbols-outlined">
                         add
                       </span>
-                    </button>
-                    <app-card 
-                              *ngFor="let task of tasks"
-                              [task]="task"
-                              cdkDrag
-                              class="tasks">
-                    </app-card>             
+                    </div>
+                  </button>
+                  <!-- </ng-template> -->
+                  <app-card 
+                            *ngFor="let task of tasks"
+                            [task]="task"
+                            cdkDrag
+                            class="tasks">
+                  </app-card>             
             </div>
           </ng-container>
         </main>
