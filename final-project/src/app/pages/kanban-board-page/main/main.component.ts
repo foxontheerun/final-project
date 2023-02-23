@@ -16,7 +16,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MainComponent implements OnInit{
   public groupId = 1;
-  public inputSearchValue = "";
+  public inputSearchTaskByName = "";
 
   public readonly tasksGroupedByStatus$ = this.data.tasks.pipe(
     map(tasks => {
@@ -32,6 +32,7 @@ export class MainComponent implements OnInit{
       return result;
     })
   );
+
   public readonly statuses = taskStatuses;
 
   constructor(private readonly data: TasksDataService,
@@ -53,26 +54,6 @@ export class MainComponent implements OnInit{
     .filter(task => task.workingGroupId === this.groupId);
   }
 
-
-
-  public getTaskByInputValue(inputTaskName: string) {
-    let tasksId:number[] = [];
-    if (inputTaskName !== "" && inputTaskName !== " ") {
-      this.tasksGroupedByStatus$.subscribe(map => 
-        { 
-          for (let tasks of map.values()) {
-            tasks
-              .filter(task => task.name.includes(inputTaskName))
-              .forEach(task => tasksId.push(task.id))
-          }
-        }
-      );
-      console.log(tasksId)
-      return tasksId;
-    } else return false
-    }
-
-  
   public getConnectedStatuses(statusId: number): string[] {
     return this.statuses.filter(status => status.id !== statusId).map(status => `status-${status.id}`);
   }
@@ -85,7 +66,6 @@ export class MainComponent implements OnInit{
     const taskId = event.previousContainer.data[event.previousIndex].id;
     const newStatusId = Number(event.container.id.slice(7));
     const newStatusPosition = event.currentIndex;
-
     this.data.changeTaskByDrop(taskId, newStatusId, newStatusPosition);
   }
 

@@ -9,20 +9,20 @@
       </button>
       <div class="input-group">
           <mat-form-field class="example-form-field">
-            <input matInput type="text" [(ngModel)]="inputSearchValue">
-            <button  matSuffix mat-icon-button aria-label="Clear" (click)="inputSearchValue=''">
+            <input matInput type="text" [(ngModel)]="inputSearchTaskByName">
+            <button  matSuffix mat-icon-button aria-label="Clear" (click)="inputSearchTaskByName=''">
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>
       </div>
-      <button mat-button mat-stroked-button aria-label="search" 
-              (click)="getTaskByInputValue(inputSearchValue)">
+      <button mat-button mat-stroked-button aria-label="search">
         <mat-icon>search</mat-icon>
       </button>
     </div>
         <main>
           <ng-container *ngFor="let status of statuses">
-            <div *ngIf="getSortedTasksFromMap((tasksGroupedByStatus$ | async), status.id) as tasks"
+            <div *ngIf="getSortedTasksFromMap((tasksGroupedByStatus$ | async), status.id) 
+                        | filterByTaskName:inputSearchTaskByName as tasks"
                  class="status-column"
                  cdkDropList
                  [id]="'status-' + status.id"
@@ -34,7 +34,6 @@
                     <span class="badge" color="secondary"> {{ tasks.length }} </span>
                   </div>
                   <div class="money">{{getSumOfMoneyFromAllTasks(tasks)}} ₽</div>
-                  <!-- <ng-template> -->
                   <button mat-stroked-button  (click)="openDialog(status.id)"
                     (mouseenter)="onMouseEnter(thenBlock)" 
                     (mouseleave)="onMouseLeave(thenBlock)">
@@ -44,7 +43,6 @@
                       </span>
                     </div>
                   </button>
-                  <!-- </ng-template> -->
                   <app-card 
                             *ngFor="let task of tasks"
                             [task]="task"

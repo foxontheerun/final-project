@@ -22,6 +22,7 @@ import {MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/mater
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
+import { FilterByTaskNamePipe } from './pipes/filter-by-task-name.pipe';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import {MatIconModule} from '@angular/material/icon';
     KanbanBoardPageComponent,
     CardComponent,
     CreateTaskDialogComponent,
+    FilterByTaskNamePipe,
   ],
   imports: [
     BrowserModule,
