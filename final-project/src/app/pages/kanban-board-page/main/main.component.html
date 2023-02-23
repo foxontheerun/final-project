@@ -15,7 +15,8 @@
             </button>
           </mat-form-field>
       </div>
-      <button mat-button mat-stroked-button aria-label="search">
+      <button mat-button mat-stroked-button aria-label="search" 
+              (click)="getTaskByInputValue(inputSearchValue)">
         <mat-icon>search</mat-icon>
       </button>
     </div>

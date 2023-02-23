@@ -17,6 +17,7 @@ import { ActivatedRoute } from '@angular/router';
 export class MainComponent implements OnInit{
   public groupId = 1;
   public inputSearchValue = "";
+
   public readonly tasksGroupedByStatus$ = this.data.tasks.pipe(
     map(tasks => {
       const result = new Map<number, Task[]>();
@@ -52,6 +53,26 @@ export class MainComponent implements OnInit{
     .filter(task => task.workingGroupId === this.groupId);
   }
 
+
+
+  public getTaskByInputValue(inputTaskName: string) {
+    let tasksId:number[] = [];
+    if (inputTaskName !== "" && inputTaskName !== " ") {
+      this.tasksGroupedByStatus$.subscribe(map => 
+        { 
+          for (let tasks of map.values()) {
+            tasks
+              .filter(task => task.name.includes(inputTaskName))
+              .forEach(task => tasksId.push(task.id))
+          }
+        }
+      );
+      console.log(tasksId)
+      return tasksId;
+    } else return false
+    }
+
+  
   public getConnectedStatuses(statusId: number): string[] {
     return this.statuses.filter(status => status.id !== statusId).map(status => `status-${status.id}`);
   }
