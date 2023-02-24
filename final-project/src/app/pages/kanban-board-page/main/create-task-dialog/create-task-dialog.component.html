@@ -46,6 +46,7 @@
           <input  name="taskPrice" matInput 
                   placeholder="Введите число..." 
                   type="number"
+                  [formControl]="priceFormControl"
                   [(ngModel)]="task.money">
         </mat-form-field>
       </div>

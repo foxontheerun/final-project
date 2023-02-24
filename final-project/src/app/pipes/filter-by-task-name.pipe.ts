@@ -6,7 +6,7 @@ import { Task } from '../common/interfaces';
 })
 export class FilterByTaskNamePipe implements PipeTransform {
 
-  transform(tasks: Task[], inputSearchTaskByName: string): Task[] {
+  transform(tasks: Task[], inputSearchTaskByName: string ): Task[] {
     return inputSearchTaskByName === "" 
     ? tasks 
     : tasks.filter(task => task.name.toLowerCase().includes(inputSearchTaskByName.trim().toLowerCase()));

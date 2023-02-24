@@ -1,5 +1,9 @@
 :root {
 	--primary-color: #128ae6;
+	--low-color: rgb(68, 204, 219);
+	--middle-color: rgb(255, 164, 41);
+	--high-color: rgb(187, 139, 179);
+	--critical-color: #ff4443;
 }
 html, body {
 	height: 100%;
@@ -47,3 +51,37 @@ button:focus {
 .mat-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button {
 	min-width: fit-content  !important;
 }
+
+.low-text {
+	color: var(--low-color);
+  }
+  
+.middle-text {
+	color: var(--middle-color);
+}
+  
+.high-text {
+	color: var(--high-color);
+}
+  
+.critical-text {
+	color: var(--critical-color);
+}
+
+
+.low {
+	border-color: var(--low-color);
+}
+
+.middle {
+	border-color: var(--middle-color);
+}
+
+.high {
+	border-color: var(--high-color);
+}
+
+.critical {
+	border-color: var(--critical-color);
+}
+  

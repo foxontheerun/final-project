@@ -1,7 +1,7 @@
 
 
 .root{
-    width: 195px;
+    min-width: 210px;
     min-height: 100%;
     mat-list-item {
         font-family: 'Inter';
@@ -20,6 +20,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-left: 14px !important;
     }
 
     .numbers {

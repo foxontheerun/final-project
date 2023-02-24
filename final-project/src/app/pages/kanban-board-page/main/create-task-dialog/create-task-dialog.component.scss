@@ -73,38 +73,22 @@
 
 
 .low {
-    border-color: rgb(68, 204, 219);
+    border-color: var(--low-color);
   }
   
   .middle {
-    border-color: rgb(255, 164, 41);
+    border-color: var(--middle-color);
   }
   
   .high {
-    border-color: rgb(187, 139, 179);
+    border-color: var(--high-color);
   }
   
   .critical {
-    border-color: #ff4443;
+    border-color: var(--critical-color);
   }
   
 
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-wrapper {
   margin:  0 !important; 
-}
-
-.low-text {
-  color: rgb(68, 204, 219);
-}
-
-.middle-text {
-  color: rgb(255, 164, 41);
-}
-
-.high-text {
-  color: rgb(187, 139, 179);
-}
-
-.critical-text {
-  color: #ff4443;
 }

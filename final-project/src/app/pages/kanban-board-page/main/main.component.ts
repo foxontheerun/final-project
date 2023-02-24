@@ -3,7 +3,7 @@ import { Component, OnInit,} from '@angular/core';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { map, switchMap } from 'rxjs';
 import { TasksDataService } from 'src/app/services/tasks-data.service';
-import { taskStatuses } from 'src/app/common/constants';
+import { taskPriorities, taskStatuses } from 'src/app/common/constants';
 import { Task } from 'src/app/common/interfaces';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateTaskDialogComponent } from './create-task-dialog/create-task-dialog.component';
@@ -17,6 +17,8 @@ import { ActivatedRoute } from '@angular/router';
 export class MainComponent implements OnInit{
   public groupId = 1;
   public inputSearchTaskByName = "";
+  public selectPriorityForFiltration = -1;
+  public readonly priorities = taskPriorities;
 
   public readonly tasksGroupedByStatus$ = this.data.tasks.pipe(
     map(tasks => {

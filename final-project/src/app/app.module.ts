@@ -8,7 +8,9 @@ import { SidebarComponent } from './pages/kanban-board-page/sidebar/sidebar.comp
 import { MainComponent } from './pages/kanban-board-page/main/main.component';
 import { KanbanBoardPageComponent } from './pages/kanban-board-page/kanban-board-page.component';
 import { CardComponent } from './pages/kanban-board-page/main/card/card.component';
-
+import { FilterByTaskNamePipe } from './pipes/filter-by-task-name.pipe';
+import { registerLocaleData } from '@angular/common';
+import localeRu from '@angular/common/locales/ru';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from "@angular/material/card";
@@ -22,7 +24,11 @@ import {MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/mater
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
-import { FilterByTaskNamePipe } from './pipes/filter-by-task-name.pipe';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { FilterByPriorityPipe } from './pipes/filter-by-priority.pipe';
+
+
+registerLocaleData(localeRu, 'ru');
 
 
 @NgModule({
@@ -35,6 +41,7 @@ import { FilterByTaskNamePipe } from './pipes/filter-by-task-name.pipe';
     CardComponent,
     CreateTaskDialogComponent,
     FilterByTaskNamePipe,
+    FilterByPriorityPipe,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +58,8 @@ import { FilterByTaskNamePipe } from './pipes/filter-by-task-name.pipe';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSidenavModule
   ],
   providers: [{provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}],
   bootstrap: [AppComponent]

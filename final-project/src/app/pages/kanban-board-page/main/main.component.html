@@ -8,21 +8,36 @@
         Добавить сделку
       </button>
       <div class="input-group">
-          <mat-form-field class="example-form-field">
-            <input matInput type="text" [(ngModel)]="inputSearchTaskByName">
-            <button  matSuffix mat-icon-button aria-label="Clear" (click)="inputSearchTaskByName=''">
-              <mat-icon>close</mat-icon>
-            </button>
-          </mat-form-field>
+            <input type="text"  [(ngModel)]="inputSearchTaskByName">
+            <div>
+              <button type="button" (click)="inputSearchTaskByName=''">
+                <mat-icon>close</mat-icon>
+              </button>
+              <button type="submit">
+                <mat-icon>search</mat-icon>
+              </button>
+            </div>
       </div>
-      <button mat-button mat-stroked-button aria-label="search">
-        <mat-icon>search</mat-icon>
-      </button>
+      <mat-form-field appearance="outline" name="priorities">
+        <!-- <mat-label>Фильтры</mat-label> -->
+        <mat-select [(value)]="selectPriorityForFiltration">
+          <mat-option [value]=-1>Без фильтров</mat-option>
+          <mat-option *ngFor="let prioritie of priorities" [value]="prioritie.id"
+          [ngClass]="{
+            'low-text': prioritie.id === 0,
+            'middle-text': prioritie.id === 1,
+            'high-text': prioritie.id === 2,
+            'critical-text': prioritie.id === 3
+          }">{{prioritie.name}}</mat-option>
+        </mat-select>
+        <div class="pipa">{{5}}</div>
+      </mat-form-field>
     </div>
         <main>
           <ng-container *ngFor="let status of statuses">
             <div *ngIf="getSortedTasksFromMap((tasksGroupedByStatus$ | async), status.id) 
-                        | filterByTaskName:inputSearchTaskByName as tasks"
+                        | filterByTaskName:inputSearchTaskByName
+                        | filterByPriority:selectPriorityForFiltration as tasks"
                  class="status-column"
                  cdkDropList
                  [id]="'status-' + status.id"
@@ -34,7 +49,8 @@
                     <span class="badge" color="secondary"> {{ tasks.length }} </span>
                   </div>
                   <div class="money">{{getSumOfMoneyFromAllTasks(tasks)}} ₽</div>
-                  <button mat-stroked-button  (click)="openDialog(status.id)"
+                  <button mat-stroked-button  
+                    (click)="openDialog(status.id)"
                     (mouseenter)="onMouseEnter(thenBlock)" 
                     (mouseleave)="onMouseLeave(thenBlock)">
                     <div #thenBlock>

@@ -16,6 +16,7 @@ import { FormControl, FormGroupDirective, NgForm } from "@angular/forms";
 })
 export class CreateTaskDialogComponent {
   public nameFormControl = new FormControl('', [Validators.required, Validators.minLength(8)]);  
+  public priceFormControl = new FormControl('', [Validators.required, Validators.max(10000000)]);
   public matcher = new MyErrorStateMatcher();
 
   public readonly statuses = taskStatuses;

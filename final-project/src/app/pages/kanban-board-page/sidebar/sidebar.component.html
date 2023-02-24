@@ -1,7 +1,8 @@
 <div class="root">
   <mat-list role="list">
-    <mat-list-item role="listitem" *ngFor="let group of groups$ | async" 
-                    [routerLink]="['/working-group', group.id]">
+    <mat-list-item role="listitem" 
+                  *ngFor="let group of groups$ | async" 
+                  [routerLink]="['/working-group', group.id]">
       Рабочая группа {{group.id}}
       <span class="numbers">{{getTasksNumber(group.id)}}</span>
     </mat-list-item>
