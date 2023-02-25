@@ -21,7 +21,6 @@ export class TasksDataService {
   return {
       id: newId,
       name: '',
-      money: 0,
       lastUpdateDate: new Date(),
       createDate: new Date(),
       executorId: 0,

@@ -4,7 +4,7 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {taskStatuses, users, taskPriorities} from "../../../../common/constants";
 import { Task } from 'src/app/common/interfaces'; 
 import { TasksDataService } from 'src/app/services/tasks-data.service';
-import {  Validators } from '@angular/forms';
+import {  FormGroup, Validators } from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 import { MyErrorStateMatcher } from './error-matcher';
 import { FormControl, FormGroupDirective, NgForm } from "@angular/forms";
@@ -15,8 +15,13 @@ import { FormControl, FormGroupDirective, NgForm } from "@angular/forms";
   styleUrls: ['./create-task-dialog.component.scss'],
 })
 export class CreateTaskDialogComponent {
-  public nameFormControl = new FormControl('', [Validators.required, Validators.minLength(8)]);  
-  public priceFormControl = new FormControl('', [Validators.required, Validators.max(10000000)]);
+
+  public myForm = new FormGroup ({
+    "nameFormControl": new FormControl('', [Validators.required, Validators.minLength(4)]),
+    "priceFormControl": new FormControl('', [Validators.required, Validators.max(10000000), Validators.min(0)])
+  })
+
+ 
   public matcher = new MyErrorStateMatcher();
 
   public readonly statuses = taskStatuses;

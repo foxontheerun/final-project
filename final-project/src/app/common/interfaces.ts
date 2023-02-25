@@ -1,7 +1,7 @@
 export interface Task {
     id: number;
     name: string;
-    money: number;
+    money?: number;
     lastUpdateDate?: Date;
     createDate: Date;
     executorId: number;
@@ -16,6 +16,7 @@ export interface Task {
     id: number;
     name: string;
     imgUrl: string;
+    status?: string;
   }
   
   export interface Group {

@@ -1,5 +1,5 @@
 .dialog {
-    border-top: solid 6px;
+    border-top: solid 8px;
     .mat-dialog-content {
       margin: 16px 0 !important; 
       overflow:visible; 
@@ -39,7 +39,7 @@
             }
 
           ::ng-deep .mat-form-field-infix {
-            padding: 0 0 7px 0; 
+            padding: 4px 0 10px 0; 
          }
          
          
@@ -92,3 +92,12 @@
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-wrapper {
   margin:  0 !important; 
 }
+
+
+  img {
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    margin-right: 8px;
+  }
+

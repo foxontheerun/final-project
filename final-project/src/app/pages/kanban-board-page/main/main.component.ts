@@ -11,10 +11,11 @@ import { ActivatedRoute } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { KanbanViewService } from './kanban-view.service';
 
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit{
   public groupId$:BehaviorSubject<number> = new BehaviorSubject(1);
@@ -85,7 +86,7 @@ export class MainComponent implements OnInit{
   }
 
   public getSumOfMoneyFromAllTasks(arr:Task[]):number {
-    return arr.reduce((sum, elem) => sum + elem.money, 0);
+    return arr.reduce((sum, elem) => sum + (elem.money ?? 0), 0);
   }
 
   public drop(event: CdkDragDrop<Task[]>): void {

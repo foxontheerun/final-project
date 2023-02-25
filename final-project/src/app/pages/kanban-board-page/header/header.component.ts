@@ -1,4 +1,6 @@
+import { users } from 'src/app/common/constants';
 import { Component, OnInit } from '@angular/core';
+import { TasksDataService } from 'src/app/services/tasks-data.service';
 
 @Component({
   selector: 'app-header',
@@ -7,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  public admin = users.filter(user => user.status === "admin")[0];
 
   constructor() { }
 

@@ -15,6 +15,12 @@ export const users: User[] = [
     id: 2,
     name: 'Сэмюэл Л. Джексон',
     imgUrl: 'https://s3.vcdn.biz/static/f/2312447601/image.jpg'
+  },
+  {
+    id: 3,
+    name: 'Квентин Тарантино',
+    imgUrl: 'https://globalmsk.ru/usr/person/big-person-15629950221.jpg',
+    status: "admin"
   }
 ];
 

@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './pages/kanban-board-page/header/header.component';
 import { SidebarComponent } from './pages/kanban-board-page/sidebar/sidebar.component';
 import { MainComponent } from './pages/kanban-board-page/main/main.component';
-import { KanbanBoardPageComponent } from './pages/kanban-board-page/kanban-board-page.component';
 import { CardComponent } from './pages/kanban-board-page/main/card/card.component';
 import { registerLocaleData } from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
@@ -35,7 +34,6 @@ registerLocaleData(localeRu, 'ru');
     HeaderComponent,
     SidebarComponent,
     MainComponent,
-    KanbanBoardPageComponent,
     CardComponent,
     CreateTaskDialogComponent,
   ],

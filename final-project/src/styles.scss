@@ -18,8 +18,9 @@ body {
 
 .mat-dialog-container {
     padding: 0 !important;
-	min-height: 573px !important;
+	min-height: 590px !important;
 	width: 520px !important;
+	border-radius: 4px !important;
 }
 
 
@@ -65,20 +66,20 @@ button:focus {
   }
   
 .middle-text {
-	color: var(--middle-color);
+	color: var(--middle-color) !important;
 }
   
 .high-text {
-	color: var(--high-color);
+	color: var(--high-color) !important;
 }
   
 .critical-text {
-	color: var(--critical-color);
+	color: var(--critical-color) !important;
 }
 
 
 .low {
-	border-color: var(--low-color);
+	border-color: var(--low-color) !important;
 }
 
 .middle {

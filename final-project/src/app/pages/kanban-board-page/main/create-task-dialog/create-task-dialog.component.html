@@ -5,7 +5,7 @@
         'high': task.priorityId === 2,
         'critical': task.priorityId === 3
       }">
-  <form #myForm="ngForm" novalidate >
+  <form [formGroup]="myForm">
   <mat-dialog-content class="border-bottom">
       <mat-card-subtitle *ngIf="inputTask.name !== ''"
                           mat-dialog-title>
@@ -38,7 +38,7 @@
                   matInput type="text" 
                   placeholder="Введите название сделки..." 
                   [(ngModel)]="task.name"
-                  [formControl]="nameFormControl" 
+                  formControlName="nameFormControl" 
                   [errorStateMatcher]="matcher">
         </mat-form-field>
         <mat-card-subtitle>Сумма:</mat-card-subtitle>
@@ -46,7 +46,7 @@
           <input  name="taskPrice" matInput 
                   placeholder="Введите число..." 
                   type="number"
-                  [formControl]="priceFormControl"
+                  formControlName="priceFormControl"
                   [(ngModel)]="task.money">
         </mat-form-field>
       </div>
@@ -71,25 +71,31 @@
         <mat-card-subtitle>Исполнитель:</mat-card-subtitle>
         <mat-form-field appearance="outline" name="users">
           <mat-select [(value)]="task.executorId">
-            <mat-option *ngFor="let user of users" [value]="user.id">{{user.name}}</mat-option>
+            <mat-option *ngFor="let user of users" [value]="user.id">
+              <img [src]="user.imgUrl">{{user.name}}
+            </mat-option>
           </mat-select>
         </mat-form-field>
       </div>
     </div>
         
-        <div >
+        <div>
           <mat-card-subtitle>Комментарий:</mat-card-subtitle>
           <mat-form-field appearance="outline">
             <textarea *ngIf="inputTask.name !== ''"
-              matInput [(ngModel)]="task.comment" name="message" rows="7"></textarea>
+              matInput [(ngModel)]="task.comment" name="message" rows="6"></textarea>
             <textarea *ngIf="inputTask.name === ''"
-              matInput [(ngModel)]="task.comment" name="message" rows="5"></textarea>
+              matInput [(ngModel)]="task.comment" name="message" rows="4"></textarea>
           </mat-form-field>
-          <!-- <textarea ngModel  class="form-control" id="exampleFormControlTextarea1"  ></textarea> -->
         </div>
         <mat-dialog-actions align="end">
           <button mat-dialog-close class="btn">Отменить</button>
-          <button  (click)="submit()" mat-dialog-close="true"  mat-flat-button color="primary">Сохранить</button>
+          <button  (click)="submit()" 
+                    mat-dialog-close="true"  
+                    mat-flat-button color="primary" 
+                    [disabled]="!myForm.valid && inputTask.name === ''">
+            Сохранить
+          </button>
         </mat-dialog-actions>
   </mat-dialog-content>
 </form>
