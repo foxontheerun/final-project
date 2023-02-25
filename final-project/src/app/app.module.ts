@@ -24,7 +24,6 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { FilterByPriorityPipe } from './pipes/filter-by-priority.pipe';
 
 
 registerLocaleData(localeRu, 'ru');
@@ -39,7 +38,6 @@ registerLocaleData(localeRu, 'ru');
     KanbanBoardPageComponent,
     CardComponent,
     CreateTaskDialogComponent,
-    FilterByPriorityPipe,
   ],
   imports: [
     BrowserModule,

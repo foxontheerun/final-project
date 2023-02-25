@@ -197,14 +197,30 @@ span {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-.pipa {
-  background: #ff7d41;
+.task-number-badge {
+  background: var(--primary-color);
   font-weight: 500;
   font-size: 16px;
   color: #FAFAFA;
   border-radius: 100%;
   position: absolute;
   right: .4em;
-  padding: 4px 14px 4px 14px;
+  padding: 4px 12px 4px 12px;
   bottom: 6px;
+}
+
+.low-bg {
+  background-color: var(--low-color);
+}
+
+.middle-bg {
+  background-color: var(--middle-color);
+}
+
+.high-bg {
+  background-color: var(--high-color);
+}
+
+.critical-bg {
+  background-color: var(--critical-color);
 }
