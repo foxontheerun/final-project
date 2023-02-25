@@ -12,7 +12,7 @@
   </div>
   <mat-card-content>
     <div class="task-content">
-      <mat-card-subtitle> Дата изменения </mat-card-subtitle>
+      <mat-card-subtitle *ngIf="task.lastUpdateDate"> Дата изменения </mat-card-subtitle>
       <p> {{task.lastUpdateDate | date : "dd MMMM yyyy" : "" : "ru"}} </p>
     </div>
     <div class="task-content" *ngIf="user">

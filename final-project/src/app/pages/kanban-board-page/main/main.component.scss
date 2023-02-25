@@ -193,10 +193,15 @@ span {
   }
 }
 
-.cdk-drag:not(.cdk-drag-dragging) {
-  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-}
 
+.cdk-drop-dragging .cdk-drag {
+  transition: transform 600ms cubic-bezier(0, 0, 0.2, 1);
+}
+ 
+.cdk-drag-animating {
+  transition: transform 650ms cubic-bezier(0, 0, 0.2, 1);
+}
+ 
 .task-number-badge {
   background: var(--primary-color);
   font-weight: 500;

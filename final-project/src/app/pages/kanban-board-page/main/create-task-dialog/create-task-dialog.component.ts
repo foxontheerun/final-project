@@ -12,7 +12,7 @@ import { FormControl, FormGroupDirective, NgForm } from "@angular/forms";
 @Component({
   selector: 'app-create-task-dialog',
   templateUrl: './create-task-dialog.component.html',
-  styleUrls: ['./create-task-dialog.component.scss']
+  styleUrls: ['./create-task-dialog.component.scss'],
 })
 export class CreateTaskDialogComponent {
   public nameFormControl = new FormControl('', [Validators.required, Validators.minLength(8)]);  

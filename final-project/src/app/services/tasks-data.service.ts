@@ -39,10 +39,17 @@ export class TasksDataService {
   public changeTaskByDrop(taskId: number, statusId: number, statusPosition: number): void {
     const tasksList = this.tasks$.value;
     const index = tasksList.findIndex(task => task.id === taskId);
-    tasksList
-      .filter(task => task.statusId === statusId)
-      .filter(task => task.statusPosition >= statusPosition)
-      .forEach(task => task.statusPosition += 1);
+    if ((tasksList[index].statusPosition < statusPosition) && (tasksList[index].statusId === statusId)) {
+      tasksList
+        .filter(task => task.statusId === statusId)
+        .filter(task => task.statusPosition <= statusPosition)
+        .forEach(task => task.statusPosition -= 1);
+    } else {
+      tasksList
+        .filter(task => task.statusId === statusId)
+        .filter(task => task.statusPosition >= statusPosition)
+        .forEach(task => task.statusPosition += 1);
+    }
     tasksList[index] = {
       ...tasksList[index],
       statusId,
@@ -52,35 +59,46 @@ export class TasksDataService {
   }
 
   public editTasksList(newTask:Task) {
-    const tasksList = this.tasks$.value;
-    const index = tasksList.findIndex(task => task.id === newTask.id);
+    let tasksList = this.tasks$.value;
+    const index = this.tasks$.value.findIndex(task => task.id === newTask.id);
       if (index !== -1) {
-      const previousStatusPosition = tasksList[index].statusPosition;
-      const previousStatusId = tasksList[index].statusId;
-      const newStatusPosition = 
-      previousStatusId !==  newTask.statusId 
-        ? tasksList.filter(task => task.statusId === newTask.statusId).length
-        : newTask.statusId;
-      tasksList
-        .filter(task => task.statusId === previousStatusId)
-        .filter(task => task.statusPosition >= previousStatusPosition)
-        .forEach(task => task.statusPosition -= 1)
-      tasksList[index] = {
-        ...tasksList[index],
-        statusId: newTask.statusId,
-        executorId: newTask.executorId,
-        priorityId: newTask.priorityId,
-        statusPosition: newStatusPosition,
-        comment: newTask.comment
+        tasksList = this.updateTaskList(newTask, tasksList, index); 
+      } else {
+        tasksList = this.addNewTaskToTaskList(newTask, tasksList);
       }
-    } else {
-      tasksList
+    this.tasks$.next(tasksList);
+  }
+
+  private updateTaskList(newTask:Task, tasksList: Task[], index:number):Task[] {
+    const previousStatusPosition = tasksList[index].statusPosition;
+    const previousStatusId = tasksList[index].statusId;
+    const newStatusPosition = 
+    previousStatusId !==  newTask.statusId 
+      ? tasksList.filter(task => task.statusId === newTask.statusId).length
+      : newTask.statusId;
+    tasksList
+      .filter(task => task.statusId === previousStatusId)
+      .filter(task => task.statusPosition >= previousStatusPosition)
+      .forEach(task => task.statusPosition -= 1)
+    tasksList[index] = {
+      ...tasksList[index],
+      lastUpdateDate: newTask.lastUpdateDate,
+      statusId: newTask.statusId,
+      executorId: newTask.executorId,
+      priorityId: newTask.priorityId,
+      statusPosition: newStatusPosition,
+      comment: newTask.comment
+    }
+    return tasksList
+  }
+
+  private addNewTaskToTaskList(newTask:Task, tasksList: Task[]):Task[] {
+    tasksList
         .filter(task => task.statusId ===  newTask.statusId 
                         && task.workingGroupId === newTask.workingGroupId)
         .forEach(task => task.statusPosition += 1)
-      tasksList.push(newTask);
-    }
-    this.tasks$.next(tasksList);
+    tasksList.push(newTask);
+    return tasksList;
   }
 
   public addNewWorkingGroup() {
