@@ -12,15 +12,31 @@
         display: flex;
         align-items: center;
         color: rgba(0, 32, 51, 0.6);
+        cursor: pointer;
     }
     
     button {
         border-radius: 20px;
+        background-color: transparent;
         border-radius: 20px;
+        height: 32px;
+        padding: 0 16px 0 16px;
+        font-weight: 400;
+        font-size: 14px;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-left: 14px !important;
+        margin: 20px 0 0 14px;
+        border: 1px solid var(--primary-color);
+        color: var(--primary-color);
+        .material-symbols-outlined {
+            padding: 2px 0 0 12px;
+            font-size: 16px;
+        }
+    }
+    button:hover {
+        background-color: var(--primary-color);
+        color: white
     }
 
     .numbers {
@@ -36,5 +52,10 @@
         height: 20px;
         background: #DEE4E8;
         border-radius: 10px;
+    }
+
+    .active {
+        font-weight: 700;
+        font-size: 16px;
     }
 }

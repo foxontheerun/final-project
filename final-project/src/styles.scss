@@ -10,7 +10,11 @@ html, body {
 	box-sizing: border-box;
 }
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body { 
+	margin: 0; 
+	font-family: Inter, "Helvetica Neue", sans-serif; 
+}
 
 .mat-dialog-container {
     padding: 0 !important;
@@ -34,7 +38,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-mini-fab.mat-primary {
   color: #ffffff;
   background-color: var(--primary-color);
-  font-family: 'Inter';
 	font-style: normal;
 	font-weight: 400;
 	font-size: 16px;
@@ -45,6 +48,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   color: var(--primary-color);
 }
 
+
+button {
+	cursor: pointer;
+}
 button:focus {
 	outline: none;
 }

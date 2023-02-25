@@ -1,4 +1,4 @@
-<div class="root border-left">
+<div class="root border-top">
     <div class="board-bar">
       <mat-card-title>Заявки</mat-card-title>
       <button mat-flat-button color="primary" id="add-task" (click)="openDialog()" >
@@ -10,10 +10,10 @@
       <div class="input-group">
             <input type="text" [formControl]="filterByName">
             <div>
-              <button type="button" (click)="filterByName.setValue('')">
+              <button type="button" (click)="filterByName.setValue('')" class="pointer">
                 <mat-icon>close</mat-icon>
               </button>
-              <button type="submit">
+              <button type="submit" class="pointer">
                 <mat-icon>search</mat-icon>
               </button>
             </div>

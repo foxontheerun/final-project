@@ -11,10 +11,11 @@ span {
 
 .root {
   padding:10px;
+
   .board-bar {
     display: flex;
     align-items: center;
-    margin: 24px 8px 15px 8px;
+    margin: 24px 6px 15px 6px;
     
     h4 {
       font-family: 'Inter';
@@ -53,7 +54,6 @@ span {
         display: flex;
         justify-content: center;
         align-items: center;
-        cursor: pointer;
         .material-icons {
           margin-top: 4px;
           margin-left: 3px;
@@ -122,7 +122,7 @@ span {
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin: 8px;
+      margin: 6px;
       padding: 16px 8px 16px 8px; 
       background: rgba(236, 241, 244, 0.5);
       min-height: 100%;
@@ -162,7 +162,7 @@ span {
             flex-direction: row;
             align-items: center;
             justify-content: center;
-            padding:  4px 8px;
+            padding:  2px 8px;
             font-family: 'Inter';
             font-style: normal;
             font-weight: 600;
