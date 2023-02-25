@@ -8,9 +8,9 @@
         Добавить сделку
       </button>
       <div class="input-group">
-            <input type="text"  [(ngModel)]="inputSearchTaskByName">
+            <input type="text" [formControl]="filterByName">
             <div>
-              <button type="button" (click)="inputSearchTaskByName=''">
+              <button type="button" (click)="filterByName.setValue('')">
                 <mat-icon>close</mat-icon>
               </button>
               <button type="submit">
@@ -19,8 +19,8 @@
             </div>
       </div>
       <mat-form-field appearance="outline" name="priorities">
-        <!-- <mat-label>Фильтры</mat-label> -->
-        <mat-select [(value)]="selectPriorityForFiltration">
+        <mat-label>Фильтры</mat-label>
+        <mat-select  [formControl]="filterByPriority">
           <mat-option [value]=-1>Без фильтров</mat-option>
           <mat-option *ngFor="let prioritie of priorities" [value]="prioritie.id"
           [ngClass]="{
@@ -35,9 +35,7 @@
     </div>
         <main>
           <ng-container *ngFor="let status of statuses">
-            <div *ngIf="getSortedTasksFromMap((tasksGroupedByStatus$ | async), status.id) 
-                        | filterByTaskName:inputSearchTaskByName
-                        | filterByPriority:selectPriorityForFiltration as tasks"
+            <div *ngIf="getSortedTasksFromMap((tasksGroupedByStatus$ | async), status.id) as tasks"
                  class="status-column"
                  cdkDropList
                  [id]="'status-' + status.id"
@@ -51,9 +49,9 @@
                   <div class="money">{{getSumOfMoneyFromAllTasks(tasks)}} ₽</div>
                   <button mat-stroked-button  
                     (click)="openDialog(status.id)"
-                    (mouseenter)="onMouseEnter(thenBlock)" 
-                    (mouseleave)="onMouseLeave(thenBlock)">
-                    <div #thenBlock>
+                    (mouseenter)="changeButtonStyleToCustom(block)" 
+                    (mouseleave)="changeButtonStyleToDefault(block)">
+                    <div #block>
                       <span  class="material-symbols-outlined">
                         add
                       </span>
@@ -68,5 +66,13 @@
             </div>
           </ng-container>
         </main>
+
+
+
+        <div *ngIf="filteredTasks$ | async  as tasks">
+          <span *ngFor="let task of tasks">
+            {{task.name}}
+          </span>
+        </div>
 </div>
 

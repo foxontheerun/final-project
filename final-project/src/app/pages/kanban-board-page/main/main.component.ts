@@ -1,13 +1,14 @@
 
 import { Component, OnInit,} from '@angular/core';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { map, switchMap } from 'rxjs';
+import { combineLatest, map, Observable, startWith, switchMap } from 'rxjs';
 import { TasksDataService } from 'src/app/services/tasks-data.service';
 import { taskPriorities, taskStatuses } from 'src/app/common/constants';
 import { Task } from 'src/app/common/interfaces';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateTaskDialogComponent } from './create-task-dialog/create-task-dialog.component';
 import { ActivatedRoute } from '@angular/router';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-main',
@@ -16,11 +17,26 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MainComponent implements OnInit{
   public groupId = 1;
-  public inputSearchTaskByName = "";
-  public selectPriorityForFiltration = -1;
+  public selectPriorityForFiltration:number = -1;
   public readonly priorities = taskPriorities;
+  
+  public filterByName: FormControl = new FormControl('');
+  public filterByPriority:  FormControl = new FormControl(0);
 
-  public readonly tasksGroupedByStatus$ = this.data.tasks.pipe(
+  public filterByName$: Observable<string> = this.filterByName.valueChanges.pipe(startWith(''));
+  public filterByPriority$: Observable<number> = this.filterByName.valueChanges.pipe(startWith(-1));
+
+  public filteredTasks$ = combineLatest(this.data.tasks, this.filterByName$, this.filterByPriority$).pipe(
+    map(([tasks, filterString, filterPriority]) => 
+      filterString === "" 
+      ? tasks 
+      : tasks
+        .filter(task => task.name.toLowerCase().includes(filterString.trim().toLowerCase()))
+        .filter(task => task.priorityId === filterPriority)
+    )
+  );
+
+  public readonly tasksGroupedByStatus$ = this.filteredTasks$.pipe(
     map(tasks => {
       const result = new Map<number, Task[]>();
       tasks.forEach(task => { 
@@ -46,7 +62,7 @@ export class MainComponent implements OnInit{
     this.route.paramMap.pipe(
       switchMap(params => params.getAll('id'))
     )
-    .subscribe(data => this.groupId = +data)
+    .subscribe(data => this.groupId = +data);
   }
 
   public getSortedTasksFromMap(map: Map<number, Task[]> | null, key: number): Task[] {
@@ -55,6 +71,12 @@ export class MainComponent implements OnInit{
     ).sort((a, b) => a.statusPosition - b.statusPosition)
     .filter(task => task.workingGroupId === this.groupId);
   }
+
+
+  // public filterTasks() {
+    
+  // }
+
 
   public getConnectedStatuses(statusId: number): string[] {
     return this.statuses.filter(status => status.id !== statusId).map(status => `status-${status.id}`);
@@ -81,14 +103,13 @@ export class MainComponent implements OnInit{
     });
   }
 
-
-  onMouseEnter(hoverName: HTMLElement) {
+  public changeButtonStyleToCustom(hoverName: HTMLElement) {
     hoverName.innerHTML = `<span class="material-symbols-outlined" style="margin-right: 8px">
           add
     </span>Быстрая сделка`;
-
   }
-  onMouseLeave(hoverName: HTMLElement) {
+
+  public changeButtonStyleToDefault(hoverName: HTMLElement) {
     hoverName.innerHTML = `<span class="material-symbols-outlined">add</span>`;
   }
 

@@ -8,7 +8,6 @@ import { SidebarComponent } from './pages/kanban-board-page/sidebar/sidebar.comp
 import { MainComponent } from './pages/kanban-board-page/main/main.component';
 import { KanbanBoardPageComponent } from './pages/kanban-board-page/kanban-board-page.component';
 import { CardComponent } from './pages/kanban-board-page/main/card/card.component';
-import { FilterByTaskNamePipe } from './pipes/filter-by-task-name.pipe';
 import { registerLocaleData } from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -40,7 +39,6 @@ registerLocaleData(localeRu, 'ru');
     KanbanBoardPageComponent,
     CardComponent,
     CreateTaskDialogComponent,
-    FilterByTaskNamePipe,
     FilterByPriorityPipe,
   ],
   imports: [
