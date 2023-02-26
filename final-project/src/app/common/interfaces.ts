@@ -22,3 +22,13 @@ export interface Task {
   export interface Group {
     id: number
   }
+
+  export interface Status {
+    id: number;
+    name: string
+  }
+
+  export interface Priority {
+    id: number;
+    name: string
+  }

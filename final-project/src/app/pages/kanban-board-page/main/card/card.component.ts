@@ -1,9 +1,9 @@
-import { Group } from './../../../../common/interfaces';
+import { TasksDataService } from 'src/app/services/tasks-data.service';
 import { Component, Input,  SimpleChanges,  OnChanges } from '@angular/core';
-import { users } from 'src/app/common/constants';
 import { User, Task } from 'src/app/common/interfaces';
 import {MatDialog} from '@angular/material/dialog';
 import { CreateTaskDialogComponent } from "../create-task-dialog/create-task-dialog.component"
+
 
 
 @Component({
@@ -16,11 +16,12 @@ export class CardComponent implements OnChanges {
 
   public user: User | undefined;
 
-  constructor(private readonly dialog: MatDialog) {}
+  constructor(private readonly dialog: MatDialog,
+              private data: TasksDataService) {}
 
   ngOnChanges(changes:SimpleChanges): void {
     if (changes['task']) {
-      this.user = users.find(user => user.id === this.task?.executorId);
+      this.user = this.data.users.find(user => user.id === this.task?.executorId);
     }
   }
 

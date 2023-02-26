@@ -1,9 +1,7 @@
-
 import { Component, OnInit,} from '@angular/core';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { combineLatest, map, Observable, startWith, switchMap, BehaviorSubject } from 'rxjs';
 import { TasksDataService } from 'src/app/services/tasks-data.service';
-import { taskPriorities, taskStatuses } from 'src/app/common/constants';
 import { Task } from 'src/app/common/interfaces';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateTaskDialogComponent } from './create-task-dialog/create-task-dialog.component';
@@ -19,8 +17,8 @@ import { KanbanViewService } from './kanban-view.service';
 })
 export class MainComponent implements OnInit{
   public groupId$:BehaviorSubject<number> = new BehaviorSubject(1);
-  public readonly priorities = taskPriorities;
-  public readonly statuses = taskStatuses;
+  public readonly priorities = this.data.priorities;
+  public readonly statuses = this.data.statuses;
   
   public filterByName: FormControl = new FormControl('');
   public filterByPriority:  FormControl = new FormControl('');

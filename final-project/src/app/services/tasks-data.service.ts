@@ -1,38 +1,44 @@
-import { workingGroups } from 'src/app/common/constants';
+import { Priority, Status, User } from 'src/app/common/interfaces';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Group, Task } from '../common/interfaces';
-import { beginTasks } from '../common/constants';
+import { LocalService } from './local.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TasksDataService {
-  private readonly tasks$ = new BehaviorSubject<Task[]>(beginTasks);
-  private readonly workGroups$ = new BehaviorSubject<Group[]>(workingGroups);
+  private readonly tasks$ = new BehaviorSubject<Task[]>(JSON.parse(this.localStore.getData('tasks')  || '[]'));
+  private readonly workGroups$ = new BehaviorSubject<Group[]>(JSON.parse(this.localStore.getData('workGroups')  || '[]'));
+  public readonly users : User[] = JSON.parse(this.localStore.getData('users')  || '[]');
+  public readonly priorities : Priority[] = JSON.parse(this.localStore.getData('taskPriorities')  || '[]');
+  public readonly statuses : Status[] = JSON.parse(this.localStore.getData('taskStatuses')  || '[]');
+
+  constructor(private localStore: LocalService) {}
   
   public get tasks(): Observable<Task[]> {
     return this.tasks$.asObservable();
   }
 
- public createNewTask(groupId: number, statusId: number):Task {
-  const taskIdArray = this.tasks$.value.map(task => task.id);
-  const newId = Math.max.apply(null, taskIdArray) + 1;
-  return {
-      id: newId,
-      name: '',
-      lastUpdateDate: new Date(),
-      createDate: new Date(),
-      executorId: 0,
-      workingGroupId: groupId,
-      priorityId: 0,
-      statusId,
-      statusPosition: 0,
-      comment: ''
-  }
- }
   public get workGroups(): BehaviorSubject<Group[]> {
     return this.workGroups$;
+  }
+
+  public createNewTask(groupId: number, statusId: number):Task {
+    const taskIdArray = this.tasks$.value.map(task => task.id);
+    const newId = Math.max.apply(null, taskIdArray) + 1;
+    return {
+        id: newId,
+        name: '',
+        lastUpdateDate: new Date(),
+        createDate: new Date(),
+        executorId: 0,
+        workingGroupId: groupId,
+        priorityId: 0,
+        statusId,
+        statusPosition: 0,
+        comment: ''
+    }
   }
 
   public changeTaskByDrop(taskId: number, statusId: number, statusPosition: number): void {
@@ -66,6 +72,7 @@ export class TasksDataService {
         tasksList = this.addNewTaskToTaskList(newTask, tasksList);
       }
     this.tasks$.next(tasksList);
+    this.localStore.saveData('tasks', JSON.stringify(tasksList));
   }
 
   private updateTaskList(newTask:Task, tasksList: Task[], index:number):Task[] {
@@ -109,6 +116,8 @@ export class TasksDataService {
       }
     )
     this.workGroups$.next(workingGroupList);
+    this.localStore.saveData('workGroups', JSON.stringify(workingGroupList));
+    console.log(workingGroupList)
   }
 
   public getTasksNumberOfWorkGroup(id:number):number {
