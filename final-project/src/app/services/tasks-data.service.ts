@@ -61,6 +61,7 @@ export class TasksDataService {
       statusPosition
     };
     this.tasks$.next(tasksList);
+    this.localStore.saveData('tasks', JSON.stringify(tasksList));
   }
 
   public editTasksList(newTask:Task) {
