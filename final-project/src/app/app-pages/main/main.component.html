@@ -1,0 +1,89 @@
+<app-header></app-header> 
+<div class="flex">
+      <app-sidebar  [groupId]="groupId$.value"></app-sidebar>
+  <div class="root border-left">
+      <div class="board-bar flex">
+        <span class="requests">Заявки</span>
+        <button mat-flat-button color="primary" (click)="openDialog()" >
+          <span  class="material-symbols-outlined">
+            add
+          </span>
+          Добавить сделку
+        </button>
+        
+    <!-- <button mat-stroked-button  (click)="drawer.toggle()">
+      Рабочая группа {{ groupId$.value}}
+    </button> -->
+        <div class="input-group">
+              <input type="text" [formControl]="filterByName">
+              <div>
+                <button type="button" (click)="filterByName.setValue('')" class="pointer">
+                  <mat-icon>close</mat-icon>
+                </button>
+                <button type="submit" class="pointer">
+                  <mat-icon>search</mat-icon>
+                </button>
+              </div>
+        </div>
+        <!-- <button type="button" mat-button (click)="drawer.toggle()">
+          Рабочие группы
+        </button> -->
+        <mat-form-field appearance="outline" name="priorities">
+          <mat-label>Фильтры</mat-label>
+          <mat-select [formControl]="filterByPriority">
+            <mat-option [value]=-1>Без фильтров</mat-option>
+            <mat-option *ngFor="let priority of priorities" [value]="priority.id"
+            [ngClass]="{
+              'low-text': priority.id === 0,
+              'middle-text': priority.id === 1,
+              'high-text': priority.id === 2,
+              'critical-text': priority.id === 3
+            }">{{priority.name}}</mat-option>
+          </mat-select>
+          <div class="task-number-badge" *ngIf="filteredTasks$ | async as number"
+          [ngClass]="{
+            'low-bg': (filterByPriority$ | async) === 0,
+            'middle-bg': (filterByPriority$ | async) === 1,
+            'high-bg': (filterByPriority$ | async) === 2,
+            'critical-bg': (filterByPriority$ | async) === 3
+          }">{{number.length}}</div>
+        </mat-form-field>
+      </div>
+          <main>
+            <ng-container *ngFor="let status of statuses">
+              <div *ngIf="getSortedTasksFromMap((tasksGroupedByStatus$ | async), status.id) as tasks"
+                  class="status-column"
+                  cdkDropList
+                  [id]="'status-' + status.id"
+                  [cdkDropListData]="tasks"
+                  [cdkDropListConnectedTo]="getConnectedStatuses(status.id)"
+                  (cdkDropListDropped)="drop($event)">
+                    <div class="status" color="primary">
+                      {{status.name.toUpperCase()}}
+                      <span class="badge" color="secondary"> {{ tasks.length }} </span>
+                    </div>
+                    <div class="money">{{getSumOfMoneyFromAllTasks(tasks)}} ₽</div>
+                    <button mat-stroked-button  
+                      (click)="openDialog(status.id)"
+                      (mouseenter)="changeButtonStyleToCustom(block)" 
+                      (mouseleave)="changeButtonStyleToDefault(block)">
+                      <div #block>
+                        <span  class="material-symbols-outlined">
+                          add
+                        </span>
+                      </div>
+                    </button>
+                    <app-card 
+                              *ngFor="let task of tasks"
+                              [task]="task"
+                              cdkDrag
+                              class="tasks">
+                    </app-card>             
+              </div>
+            </ng-container>
+          </main>
+  </div>
+<!-- </mat-drawer-container> -->
+</div>
+
+

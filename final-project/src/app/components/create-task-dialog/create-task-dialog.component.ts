@@ -1,7 +1,7 @@
 import { BehaviorSubject, map } from 'rxjs';
 import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {taskStatuses, users, taskPriorities} from "../../../../common/constants";
+import {taskStatuses, users, taskPriorities} from "../../common/constants";
 import { Task } from 'src/app/common/interfaces'; 
 import { TasksDataService } from 'src/app/services/tasks-data.service';
 import {  FormGroup, Validators } from '@angular/forms';

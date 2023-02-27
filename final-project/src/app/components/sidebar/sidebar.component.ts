@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TasksDataService } from 'src/app/services/tasks-data.service';
-import { KanbanViewService } from '../main/kanban-view.service';
+
 
 @Component({
   selector: 'app-sidebar',
@@ -10,10 +10,10 @@ import { KanbanViewService } from '../main/kanban-view.service';
 })
 export class SidebarComponent implements OnInit {
   public readonly groups$ = this.data.workGroups;
-  public readonly groupId$ = this.kanbanViewService.groupId$;
+  // public readonly groupId$ = this.kanbanViewService.groupId$;
+  @Input() public groupId: number | undefined;
   
-  constructor(private readonly data: TasksDataService,
-              private readonly kanbanViewService: KanbanViewService) { }
+  constructor(private readonly data: TasksDataService) { }
 
   ngOnInit(): void {
   }

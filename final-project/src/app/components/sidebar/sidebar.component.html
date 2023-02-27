@@ -4,7 +4,7 @@
                   *ngFor="let group of groups$ | async" 
                   [routerLink]="['/working-group', group.id]"
                   [ngClass]="{
-                    'active': group.id === groupId$.value
+                    'active': group.id === groupId
                   }">
       Рабочая группа {{group.id}}
       <span class="numbers">{{getTasksNumber(group.id)}}</span>

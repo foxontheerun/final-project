@@ -1,5 +1,11 @@
 .flex {
   display: flex;
+
+}
+
+
+.mat-drawer-container {
+  background-color: transparent;
 }
 
 ::ng-deep .mat-drawer-content {
@@ -20,8 +26,9 @@ button {
 
 
 .root {
-  overflow-x: auto;
+  overflow-x: scroll;
   padding:10px;
+
   .board-bar {
     display: flex;
     align-items: center;
@@ -43,10 +50,9 @@ button {
       line-height: 120%;
       color: #002033;
     }
-    #add-task {
+    button {
        margin-right: 12px;
     }
-
     .input-group {
       margin-right: 16px;
       input {
@@ -134,7 +140,7 @@ button {
 
   main {
     display: flex;
-    min-height: 95vh;
+    min-height: 85vh;
     flex-grow: 1;
   
     .status-column {

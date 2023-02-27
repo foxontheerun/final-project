@@ -1,6 +1,6 @@
 import { users } from 'src/app/common/constants';
-import { Component, OnInit } from '@angular/core';
-import { TasksDataService } from 'src/app/services/tasks-data.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-header',
@@ -8,6 +8,7 @@ import { TasksDataService } from 'src/app/services/tasks-data.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
 
   public admin = users.filter(user => user.status === "admin")[0];
 

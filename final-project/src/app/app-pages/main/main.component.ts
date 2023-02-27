@@ -4,11 +4,9 @@ import { combineLatest, map, Observable, startWith, switchMap, BehaviorSubject }
 import { TasksDataService } from 'src/app/services/tasks-data.service';
 import { Task } from 'src/app/common/interfaces';
 import { MatDialog } from '@angular/material/dialog';
-import { CreateTaskDialogComponent } from './create-task-dialog/create-task-dialog.component';
+import { CreateTaskDialogComponent } from '../../components/create-task-dialog/create-task-dialog.component';
 import { ActivatedRoute } from '@angular/router';
 import { FormControl } from '@angular/forms';
-import { KanbanViewService } from './kanban-view.service';
-
 
 @Component({
   selector: 'app-main',
@@ -59,8 +57,7 @@ export class MainComponent implements OnInit{
 
   constructor(private readonly data: TasksDataService,
               private readonly dialog: MatDialog,
-              private readonly route: ActivatedRoute,
-              private readonly kanbanViewService: KanbanViewService) {
+              private readonly route: ActivatedRoute,) {
   }
 
   ngOnInit(): void {
@@ -69,7 +66,6 @@ export class MainComponent implements OnInit{
     )
     .subscribe(data => {
       this.groupId$.next(+data);
-      this.kanbanViewService.groupId$.next(+data);
     });
   }
 
