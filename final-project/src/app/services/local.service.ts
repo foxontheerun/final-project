@@ -7,11 +7,11 @@ import { beginTasks, taskPriorities, taskStatuses, users, workingGroups } from '
 export class LocalService {
 
   constructor() {
-    this.getData('tasks')?.length === 0 && this.saveData('tasks', JSON.stringify(beginTasks));
-    this.getData('workGroups')?.length === 0 && this.saveData('workGroups', JSON.stringify(workingGroups));
-    this.getData('users')?.length === 0 && this.saveData('users', JSON.stringify(users));
-    this.getData('taskStatuses')?.length === 0 && this.saveData('taskStatuses', JSON.stringify(taskStatuses));
-    this.getData('taskPriorities')?.length === 0 && this.saveData('taskPriorities', JSON.stringify(taskPriorities));
+    !this.getData('tasks')?.length && this.saveData('tasks', JSON.stringify(beginTasks));
+    !this.getData('workGroups')?.length && this.saveData('workGroups', JSON.stringify(workingGroups));
+    !this.getData('users')?.length && this.saveData('users', JSON.stringify(users));
+    !this.getData('taskStatuses')?.length  && this.saveData('taskStatuses', JSON.stringify(taskStatuses));
+    !this.getData('taskPriorities')?.length  && this.saveData('taskPriorities', JSON.stringify(taskPriorities));
    }
 
   public saveData(key: string, value: string) {
