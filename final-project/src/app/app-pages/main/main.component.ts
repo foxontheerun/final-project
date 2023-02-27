@@ -24,7 +24,7 @@ export class MainComponent implements OnInit{
   public filterByName$: Observable<string> = this.filterByName.valueChanges.pipe(startWith(''));
   public filterByPriority$: Observable<number> = this.filterByPriority.valueChanges.pipe(startWith(-1));
 
-  public filteredTasks$ = combineLatest(this.data.tasks, this.filterByName$, 
+  public filteredTasks$:Observable<Task[]> = combineLatest(this.data.tasks, this.filterByName$, 
     this.filterByPriority$, this.groupId$).pipe(
     map(([tasks, filterString, filterPriority, groupId]) => {
       tasks = tasks.filter(task => task.workingGroupId === groupId);
@@ -39,7 +39,7 @@ export class MainComponent implements OnInit{
     )
   );
 
-  public readonly tasksGroupedByStatus$ = this.filteredTasks$.pipe(
+  public readonly tasksGroupedByStatus$:Observable<Map<number, Task[]>> = this.filteredTasks$.pipe(
     map(tasks => {
       const result = new Map<number, Task[]>();
       tasks.forEach(task => { 
@@ -53,7 +53,6 @@ export class MainComponent implements OnInit{
       return result;
     })
   );
-
 
   constructor(private readonly data: TasksDataService,
               private readonly dialog: MatDialog,
