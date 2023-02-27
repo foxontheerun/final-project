@@ -7,7 +7,6 @@ import { beginTasks, taskPriorities, taskStatuses, users, workingGroups } from '
 export class LocalService {
 
   constructor() {
-    
     !this.getData('tasks')?.length && this.saveData('tasks', JSON.stringify(beginTasks));
     !this.getData('workGroups')?.length && this.saveData('workGroups', JSON.stringify(workingGroups));
     !this.getData('users')?.length && this.saveData('users', JSON.stringify(users));
