@@ -1,13 +1,10 @@
-import { BehaviorSubject, map } from 'rxjs';
-import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {taskStatuses, users, taskPriorities} from "../../common/constants";
 import { Task } from 'src/app/common/interfaces'; 
 import { TasksDataService } from 'src/app/services/tasks-data.service';
 import {  FormGroup, Validators } from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
-import { MyErrorStateMatcher } from './error-matcher';
-import { FormControl, FormGroupDirective, NgForm } from "@angular/forms";
+import { FormControl } from "@angular/forms";
 
 @Component({
   selector: 'app-create-task-dialog',
@@ -21,8 +18,6 @@ export class CreateTaskDialogComponent {
     "priceFormControl": new FormControl('', [Validators.required, Validators.max(10000000), Validators.min(0)])
   })
 
- 
-  public matcher = new MyErrorStateMatcher();
 
   public readonly statuses = taskStatuses;
   public readonly users = users;

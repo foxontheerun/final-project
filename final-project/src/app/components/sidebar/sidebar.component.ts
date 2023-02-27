@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { TasksDataService } from 'src/app/services/tasks-data.service';
 
 
@@ -10,7 +9,7 @@ import { TasksDataService } from 'src/app/services/tasks-data.service';
 })
 export class SidebarComponent implements OnInit {
   public readonly groups$ = this.data.workGroups;
-  // public readonly groupId$ = this.kanbanViewService.groupId$;
+
   @Input() public groupId: number | undefined;
   
   constructor(private readonly data: TasksDataService) { }
